@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubeetroo <ubeetroo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:08:24 by ubeetroo          #+#    #+#             */
-/*   Updated: 2021/10/12 00:19:25 by ubeetroo         ###   ########.fr       */
+/*   Updated: 2022/02/18 01:08:59 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ char	*ft_itoa(int n)
 	count_len(nn, &size);
 	if (nn >= 0)
 	{
-		ret = ft_calloc(sizeof(char), size + 1);
+		ret = ft_zalloc(sizeof(char) * (size + 1));
 		if (ret)
 			ret[size] = '\0';
 	}
 	else
 	{
-		ret = ft_calloc(sizeof(char), size + 2);
+		ret = ft_zalloc(sizeof(char) * (size + 2));
 		if (ret)
 			ret[size + 1] = '\0';
 	}

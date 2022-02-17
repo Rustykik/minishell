@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_zalloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 13:11:48 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/18 01:10:00 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/15 20:54:48 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/18 01:11:17 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_ZALLOC_H
+# define FT_ZALLOC_H
 
-char	*ft_strjoin(char const *s1, char const *s2)
+# include "../libft/libft.h"
+
+typedef struct s_heap	t_heap;
+
+struct	s_heap
 {
-	char	*ret;
+	void	**mem;
+	// void	**mem_tmp;
+	size_t	count;
+	// size_t	count_tmp;
+	void	*shell;	
+};
 
-	if (s1 == NULL)
-		return (NULL);
-	ret = ft_zalloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (ret == NULL)
-		return (NULL);
-	ft_memcpy(ret, s1, ft_strlen(s1));
-	ft_strlcpy(ret + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	return (ret);
-}
+void	*ft_zalloc(size_t size);
+void	ft_free(void);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 19:33:15 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/17 21:27:39 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/18 01:05:22 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	words = count_words(s1, c);
-	buf = ft_malloc(sizeof(char *) * (words + 1));
+	buf = ft_zalloc(sizeof(char *) * (words + 1));
 	if (!buf)
 		return (NULL);
 	buf[words] = NULL;

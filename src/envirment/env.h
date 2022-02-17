@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 13:11:48 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/18 01:10:00 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/18 01:22:07 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/18 02:24:40 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef ENV_H
+# define ENV_H
 
-char	*ft_strjoin(char const *s1, char const *s2)
+typedef struct s_env	t_env;
+
+struct	s_env
 {
-	char	*ret;
+	char	**envp;
+	char	*paths;
+	int		len;
+};
 
-	if (s1 == NULL)
-		return (NULL);
-	ret = ft_zalloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (ret == NULL)
-		return (NULL);
-	ft_memcpy(ret, s1, ft_strlen(s1));
-	ft_strlcpy(ret + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	return (ret);
-}
+t_env	*put_envp(char **envp);
+void	set_env(t_env *env, char *param, char *val);
+#endif

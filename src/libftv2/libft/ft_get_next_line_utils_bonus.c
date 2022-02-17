@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 21:49:12 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/17 21:27:35 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/18 01:04:54 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strjoin_gnlb(char *s1, char *s2)
 		len = 0;
 	else
 		len = ft_strlen_gnlb(s1);
-	ret = ft_malloc((len + ft_strlen_gnlb(s2) + 1) * sizeof(char));
+	ret = ft_zalloc((len + ft_strlen_gnlb(s2) + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);
 	ft_memcpy_gnlb(ret, s1, len);

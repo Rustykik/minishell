@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 13:17:25 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/17 20:36:06 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/18 01:59:48 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <stdarg.h>
 
-# include "../ft_malloc/ft_malloc.h"
+# include "../ft_zalloc/ft_zalloc.h"
 
 # define BUFFER_SIZE 500
 
@@ -98,5 +98,8 @@ char	**ft_split(char const *s, char c);
 
 /* MATH */
 int		ft_pow(int nb, int power);
+
+/*to_test*/
+char	*ft_multi_join(const char *str, ...);
 
 #endif

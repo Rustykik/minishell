@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_zalloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:34:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/17 20:45:30 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/18 02:00:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_malloc.h"
+#include "ft_zalloc.h"
 
 extern t_heap	g_heap;
 
@@ -26,7 +26,7 @@ void	ft_free(void)
 
 void	alloc_error(int size)
 {
-	ft_putstr_fd("ft_malloc: cannot allocate ", 2);
+	ft_putstr_fd("ft_zalloc: cannot allocate ", 2);
 	ft_putnbr_fd(size, 2);
 	ft_putstr_fd("bytes", 2);
 	ft_free();
@@ -54,7 +54,7 @@ void	add(void *ptr)
 	g_heap.mem = new;
 }
 
-void	*ft_malloc(size_t size)
+void	*ft_zalloc(size_t size)
 {
 	void	*ptr;
 
@@ -67,5 +67,6 @@ void	*ft_malloc(size_t size)
 	if (!ptr)
 		alloc_error(size);
 	add(ptr);
+	ft_bzero(ptr, size);
 	return (ptr);
 }

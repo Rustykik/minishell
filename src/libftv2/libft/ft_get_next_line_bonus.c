@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:34:14 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/17 21:27:32 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/18 01:04:45 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr_gnlb(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if ((size_t) start >= ft_strlen_gnlb(s))
 	{
-		ret = ft_malloc(1 * sizeof(char));
+		ret = ft_zalloc(1 * sizeof(char));
 		if (ret == NULL)
 			return (NULL);
 		ret[0] = '\0';
@@ -31,7 +31,7 @@ char	*ft_substr_gnlb(char const *s, unsigned int start, size_t len)
 		sze = ft_strlen_gnlb(s + start);
 	else
 		sze = len;
-	ret = ft_malloc((sze + 1) * sizeof(char));
+	ret = ft_zalloc((sze + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);
 	ft_strlcpy_gnlb(ret, s + start, sze + 1);

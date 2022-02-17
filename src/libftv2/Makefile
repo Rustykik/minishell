@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 12:56:00 by ubeetroo          #+#    #+#              #
-#    Updated: 2022/02/17 21:25:02 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/18 02:01:14 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Werror -Wextra
 
 LIB_PATH = ./libft/
 
-MAL_PATH = ./ft_malloc/
+MAL_PATH = ./ft_zalloc/
 
 ALL_PATH = $(LIB_PATH)	$(MAL_PATH)
 
@@ -74,10 +74,11 @@ LIB_SRCS =		ft_atoi \
 				ft_putnbr_basep_printf \
 				ft_putnbr_fd_printf \
 				ft_putstr_fd_printf \
-				ft_strlen_printf
+				ft_strlen_printf \
+				ft_multi_join
 
 
-MAL_SRCS =		ft_malloc
+MAL_SRCS =		ft_zalloc
 # SRCS_B =	ft_lstnew \
 # 			ft_lstadd_front \
 # 			ft_lstsize \
@@ -101,7 +102,7 @@ OBJ =  $(addsuffix .o, $(ALL_SRC))
 # OBJ_B =  $(addsuffix .o, $(SRCS_B))
 
 LIB_INC = ./libft/libft.h 
-MAL_INC = ./ft_malloc/ft_malloc.h
+MAL_INC = ./ft_zalloc/ft_zalloc.h
 
 ALL_INC = $(LIB_INC) $(MAL_INC)
 
