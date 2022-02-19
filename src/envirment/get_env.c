@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 00:32:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 07:40:32 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/19 05:17:50 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/19 07:31:55 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "env.h"
 
-# include "./libftv2/ft_zalloc/ft_zalloc.h"
-# include "./libftv2/libft/libft.h"
-# include "./enirment/env.h"
-# include "./const.h"
-
-typedef struct s_shell	t_shell;
-
-struct s_shell
+char	*get_env(t_env *env, char *param)
 {
-	char	*input;
-	t_env	*env;
-	int		cmds;
-	int		exit;//???
-	int		exit_status;
-};
+	char	*to_find;
+	char	*val;
 
-#endif
+	to_find = param_exists(env, ft_strjoin(param, "="));
+	if (!to_find)
+		return (ft_strdup(" "));
+	val = ft_strdup(ft_strchr(to_find, '=') + 1);
+	return (val);
+}

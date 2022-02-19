@@ -6,13 +6,13 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:32:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/18 02:22:00 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/19 07:33:02 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-int	param_exists(t_env *env, char *param)
+char	*param_exists(t_env *env, char *param)
 {
 	char	*envp;
 
@@ -42,7 +42,7 @@ void	set_env(t_env *env, char *param, char *val)
 	char	*exists;
 
 	join = ft_multi_join(param, "=", val);
-	exists = param_exists(env, param);
+	exists = param_exists(env, ft_strjoin(param, "="));
 	if (!exists)
 		add_param(env, join, env->envp);
 	else
