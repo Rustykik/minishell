@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:32:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 07:33:02 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/19 11:24:08 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*param_exists(t_env *env, char *param)
 {
-	char	*envp;
+	char	**envp;
 
 	envp = env->envp;
 	while (*envp++)
@@ -29,8 +29,8 @@ void	add_param(t_env *env, char *join, char **envp)
 
 	i = -1;
 	env->envp = ft_zalloc(sizeof(char *) * (env->len + 2));
-	while (++i < env->length)
-		env->vars[i] = envp[i];
+	while (++i < env->len)
+		env->envp[i] = envp[i];
 	env->envp[i] = join;
 	++env->len;
 }
