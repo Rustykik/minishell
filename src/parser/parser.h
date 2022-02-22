@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:22:07 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 11:22:41 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/22 13:15:11 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "../libftv2/libftv2.h"
+# include "../env/env.h"
 
-typedef struct s_env	t_env;
+# include "stdio.h" //delete me
 
-struct	s_env
-{
-	char	**envp;
-	char	*paths;
-	int		len;
-};
-
-t_env	*put_envp(char **envp);
-void	set_env(t_env *env, char *param, char *val);
-char	*param_exists(t_env *env, char *param);
+char	*cut_spaces(char *input);
+char	*put_global(t_env *env, char *str);
 
 #endif

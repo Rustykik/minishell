@@ -6,16 +6,22 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:32:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 07:40:32 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/22 12:41:54 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <readline/readline.h>
+# include <readline/history.h>
+
 # include "./libftv2/ft_zalloc/ft_zalloc.h"
 # include "./libftv2/libft/libft.h"
-# include "./enirment/env.h"
+
+// # include "./libftv2/libftv2.h"
+# include "./parser/parser.h"
+# include "./env/env.h"
 # include "./const.h"
 
 typedef struct s_shell	t_shell;

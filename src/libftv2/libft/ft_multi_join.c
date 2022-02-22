@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/18 02:04:49 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/22 12:13:34 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char	*muljoin(char *str, va_list *args)
 {
 	char	*to_join;
 
-	to_join = va_arg(*args, char const *);
+	to_join = va_arg(*args, char *);
 	while (to_join)
 	{
 		str = ft_strjoin(str, to_join);
-		to_join = va_arg(*args, char const *);
+		to_join = va_arg(*args, char *);
 	}
 	return (str);
 }

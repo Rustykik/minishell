@@ -6,34 +6,40 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 10:51:40 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:14:01 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_shell(t_shell *shell)
+int	init_shell(t_shell *shell, char **envp)
 {
-	char	**envp;
 	char	*buf;
 
 	ft_bzero(shell, sizeof(t_shell));
-	envp = getenv();
 	shell->env = put_envp(envp);
-	buf = ft_itoa(ft_atoi(get_env("SHLVL", shell->env)) + 1);
+	buf = ft_itoa(ft_atoi(get_env(shell->env, "SHLVL")) + 1);
 	set_env(shell->env, "SHLVL", buf);
 	return (0);
 }
 
-// void	execute_input(t_shell *shell, char *read)
-// {
-// 	char	*str;
+void	execute_input(t_shell *shell, char *read)
+{
+	char	*str;
 
-// 	str = ft_strdup(read);
-// 	check_input(str);
-// }
+	str = ft_strdup(read);
+	// check_input(str);
+	str = cut_spaces(str);
+	// printf("%s\n", str);
 
-int	main(int argc, char **argv)
+	str = put_global(shell->env, str);
+	printf("%s\n", str);
+	// ft_free_tmp();
+}
+
+t_heap	g_heap;
+
+int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
 	char	*read;
@@ -41,13 +47,14 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	g_heap.shell = (void *)&shell;
+	g_heap.count = 0;
 	if (init_shell(&shell, envp))
 		return (1); // ?
 	while (!shell.exit)
 	{
 		shell.cmds = 0;// ?bzero
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGINT, sig_int_empty);
+		// signal(SIGQUIT, SIG_IGN);
+		// signal(SIGINT, sig_int_empty);
 		read = readline(PROMPT);
 		if (!read)
 			break ;

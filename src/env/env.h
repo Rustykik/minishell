@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 14:56:24 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/22 12:12:32 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/18 01:22:07 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/22 12:42:30 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef ENV_H
+# define ENV_H
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+# include "../libftv2/ft_zalloc/ft_zalloc.h"
+# include "../libftv2/libft/libft.h"
+
+typedef struct s_env	t_env;
+
+struct	s_env
 {
-	t_list	*ret;
-	t_list	**rett;
+	char	**envp;
+	char	*paths;
+	int		len;
+};
 
-	if (!lst)
-		return (NULL);
-	rett = &ret;
-	ret = NULL;
-	while (lst)
-	{
-		ft_lstadd_back(rett, ft_lstnew((*f)(lst->data)));
-		if (!ft_lstlast(*rett))
-		{
-			ft_lstclear(rett, del);
-			ret = NULL;
-			return (ret);
-		}
-		lst = lst->next;
-	}
-	return (*rett);
-}
+t_env	*put_envp(char **envp);
+void	set_env(t_env *env, char *param, char *val);
+char	*param_exists(t_env *env, char *param);
+char	*get_env(t_env *env, char *param);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:32:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 11:24:08 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/22 12:50:08 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ char	*param_exists(t_env *env, char *param)
 	char	**envp;
 
 	envp = env->envp;
-	while (*envp++)
+	while (*envp)
+	{
 		if (!ft_strncmp(*envp, param, ft_strlen(param)))
 			return (*envp);
+		++envp;
+	}
 	return (NULL);
 }
 
@@ -37,7 +40,6 @@ void	add_param(t_env *env, char *join, char **envp)
 
 void	set_env(t_env *env, char *param, char *val)
 {
-	char	**new_envp;
 	char	*join;
 	char	*exists;
 
