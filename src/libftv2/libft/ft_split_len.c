@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   ft_split_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:43:12 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 09:27:51 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/23 09:29:38 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "libft.h"
 
-# include "../redirect/redirect.h"
-# include "../libftv2/libftv2.h"
-# include "../env/env.h"
+size_t	ft_split_len(char **split)
+{
+	size_t	len;
 
-# include "stdio.h" //delete me
-
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
-
-
-#endif
+	len = 0;
+	if (!split)
+		return (0);
+	while (split[len])
+		++len;
+	return (len);
+}

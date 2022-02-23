@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:43:12 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 12:36:08 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/23 12:42:25 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef REDIRECT_H
+# define REDIRECT_H
 
-# include "../redirect/redirect.h"
-# include "../libftv2/libftv2.h"
-# include "../env/env.h"
+typedef struct s_redir	t_redir;
 
-# include "stdio.h" //delete me
-
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
-
+struct s_redir
+{
+	int		fd;
+	char	*file;
+};
 
 #endif

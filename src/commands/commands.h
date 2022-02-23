@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:43:12 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 10:09:40 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/23 12:25:47 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef COMMANDS_H
+# define COMMANDS_H
 
-# include "../redirect/redirect.h"
 # include "../libftv2/libftv2.h"
-# include "../env/env.h"
+# include "../parser/parser.h"
+# include "../shell/shell.h"
+# include "../minishell.h"
 
-# include "stdio.h" //delete me
-
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
-
+void	init_commands(t_shell *shell, char **parsed);
 
 #endif

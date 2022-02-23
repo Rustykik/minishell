@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 12:56:00 by ubeetroo          #+#    #+#              #
-#    Updated: 2022/02/18 02:01:14 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/23 09:31:41 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ LIB_SRCS =		ft_atoi \
 				ft_putnbr_fd_printf \
 				ft_putstr_fd_printf \
 				ft_strlen_printf \
-				ft_multi_join
+				ft_multi_join \
+				ft_split_len
 
 
 MAL_SRCS =		ft_zalloc
@@ -114,7 +115,7 @@ $(NAME): $(OBJ) $(ALL_INC)
 # bonus: $(OBJ) $(OBJ_B) 
 # 	ar rcs $(NAME) $(OBJ) $(OBJ_B)
 
-%.o: %.c
+%.o: %.c Makefile $(ALL_INC)
 	$(COMP) $(FLAGS) -c $< -o $@ $(INC)
 
 all: $(NAME)

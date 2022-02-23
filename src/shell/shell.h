@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:43:12 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/23 12:10:37 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef SHELL_H
+# define SHELL_H
 
-# include "../redirect/redirect.h"
-# include "../libftv2/libftv2.h"
+# include "../commands/commands.h"
 # include "../env/env.h"
 
-# include "stdio.h" //delete me
+typedef struct s_cmd	t_cmd;
+typedef struct s_shell	t_shell;
 
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
+struct	s_cmd
+{
+	char	*cmd;
+	char	*input;
+	int		fd[2];
+	int		*fds;
+};
 
+struct s_shell
+{
+	char	*input;
+	t_env	*env;
+	int		cmds_count;
+	t_cmd	**cmds_arr;
+	int		cmds;
+	int		exit;//???
+	int		exit_status;
+};
 
 #endif
