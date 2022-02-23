@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_envp.c                                         :+:      :+:    :+:   */
+/*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 00:47:02 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/22 11:52:20 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/19 11:23:45 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 12:42:45 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
-
-char	*put_paths(char **envp)
-{
-	while (*envp++)
-		if (!ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")))
-			return (*envp + ft_strlen("PATH="));
-	return (NULL);
-}
 
 void	copy_envp(t_env *env, char **envp)
 {
 	int	i;
 
 	i = -1;
-	env->envp = ft_zalloc(sizeof(char *) * (env->len + 1));
+	env->envp = ft_zalloc(sizeof(char **) * (env->len + 1)); 
 	while (++i < env->len)
 		env->envp[i] = ft_strdup(envp[i]);
 }
 
-t_env	*put_envp(char **envp)
+t_env	*init_env(char **envp)
 {
 	t_env	*env;
+	int		size;
 
-	env = ft_zalloc(sizeof(t_env));
-	env->len = 0;
-	while (envp[env->len])
-		++env->len;
+	size = 0;
+	while (envp[size])
+		size++;
+	env = ft_zalloc(sizeof(t_env) * size);
+	env->len = size;
 	copy_envp(env, envp);
-	env->paths = put_paths(envp);
-	set_env(env, "?", "0");
+	set_env_par(env, "?", "0");
 	return (env);
 }

@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:22:07 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/22 12:42:30 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/19 11:20:36 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 12:54:46 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-# include "../libftv2/ft_zalloc/ft_zalloc.h"
-# include "../libftv2/libft/libft.h"
+#include "../libftv2/libftv2.h"
+#include "../error/error.h"
+#include "../const.h"
 
-typedef struct s_env	t_env;
-
-struct	s_env
+typedef struct s_env
 {
-	char	**envp;
-	char	*paths;
 	int		len;
-};
+	char	**envp;
+}		t_env;
 
-t_env	*put_envp(char **envp);
-void	set_env(t_env *env, char *param, char *val);
-char	*param_exists(t_env *env, char *param);
-char	*get_env(t_env *env, char *param);
+t_env	*init_env(char **envp);
+char	*get_env_par(t_env *env, char *param);
+int		set_env_par(t_env *env, char *param, char *value);
+int		del_env_par(t_env *env, char *param);
+int		env_par_exist(t_env *env, char *param);
 
 #endif

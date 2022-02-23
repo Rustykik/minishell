@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_multi_join.c                                    :+:      :+:    :+:   */
+/*   ftmp_strmapi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:52:20 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 14:34:04 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/22 14:35:00 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmp.h"
 
-char	*muljoin(char *str, va_list *args)
+char	*ftmp_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*to_join;
+	char				*ret;
+	unsigned int		i;
 
-	to_join = va_arg(*args, char *);
-	while (to_join)
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	ret = ftmp_strdup(s);
+	if (ret == NULL)
+		return (NULL);
+	while (ret[i])
 	{
-		str = ft_strjoin(str, to_join);
-		to_join = va_arg(*args, char *);
+		ret[i] = (*f)(i, s[i]);
+		++i;
 	}
-	return (str);
-}
-
-char	*ft_multi_join(const char *str, ...)
-{
-	va_list	args;
-	char	*ret;
-	char	*to_work;
-
-	to_work = ft_strdup(str);
-	va_start(args, str);
-	ret = muljoin(to_work, &args);
-	va_end(args);
 	return (ret);
 }

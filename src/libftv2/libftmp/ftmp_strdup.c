@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_multi_join.c                                    :+:      :+:    :+:   */
+/*   ftmp_strdup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:52:20 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 13:05:59 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/22 14:28:55 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmp.h"
 
-char	*muljoin(char *str, va_list *args)
+char	*ftmp_strdup(const char *s1)
 {
-	char	*to_join;
+	char		*ret;
+	size_t		len;
 
-	to_join = va_arg(*args, char *);
-	while (to_join)
-	{
-		str = ft_strjoin(str, to_join);
-		to_join = va_arg(*args, char *);
-	}
-	return (str);
-}
-
-char	*ft_multi_join(const char *str, ...)
-{
-	va_list	args;
-	char	*ret;
-	char	*to_work;
-
-	to_work = ft_strdup(str);
-	va_start(args, str);
-	ret = muljoin(to_work, &args);
-	va_end(args);
+	len = ft_strlen(s1);
+	ret = ftmp_zalloc(sizeof(char) * (len + 1));
+	if (ret == NULL)
+		return (NULL);
+	ft_memcpy(ret, s1, len);
+	ret[len] = '\0';
 	return (ret);
 }

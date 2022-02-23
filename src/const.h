@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 07:40:10 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 12:26:15 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONST_H
 # define CONST_H
 
-# define PROMPT "b.d>"
+/* GENERAL */
+# define PROMPT "¯\\_(ツ)_/¯"
+
+/* MODULES */
+# define M_ENV	"Environment"
+# define M_PAR	"Parser"
+# define M_CD	"cd"
+
+/* ERRORS */
+# define ERR_NULL_PARAMS	"some parameters are NULL"
+
+/* ASCII */
+# define ASCII_CH	13
 
 #endif

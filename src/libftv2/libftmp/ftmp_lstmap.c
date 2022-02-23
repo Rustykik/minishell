@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_multi_join.c                                    :+:      :+:    :+:   */
+/*   ftmp_lstmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:52:20 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 14:33:02 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/22 14:33:19 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmp.h"
 
-char	*muljoin(char *str, va_list *args)
+t_list	*ftmp_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*to_join;
+	t_list	*ret;
+	t_list	**rett;
 
-	to_join = va_arg(*args, char *);
-	while (to_join)
+	if (!lst)
+		return (NULL);
+	rett = &ret;
+	ret = NULL;
+	while (lst)
 	{
-		str = ft_strjoin(str, to_join);
-		to_join = va_arg(*args, char *);
+		ft_lstadd_back(rett, ftmp_lstnew((*f)(lst->content)));
+		if (!ft_lstlast(*rett))
+		{
+			ft_lstclear(rett, del);
+			ret = NULL;
+			return (ret);
+		}
+		lst = lst->next;
 	}
-	return (str);
-}
-
-char	*ft_multi_join(const char *str, ...)
-{
-	va_list	args;
-	char	*ret;
-	char	*to_work;
-
-	to_work = ft_strdup(str);
-	va_start(args, str);
-	ret = muljoin(to_work, &args);
-	va_end(args);
-	return (ret);
+	return (*rett);
 }

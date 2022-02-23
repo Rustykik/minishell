@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zalloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:54:48 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/18 01:11:17 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 12:30:34 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 # define FT_ZALLOC_H
 
 # include "../libft/libft.h"
+# include "../libftmp/libftmp.h"
 
 typedef struct s_heap	t_heap;
 
 struct	s_heap
 {
 	void	**mem;
-	// void	**mem_tmp;
+	void	**tmp_mem;
 	size_t	count;
-	// size_t	count_tmp;
+	size_t	tmp_count;
 	void	*shell;	
 };
 
 void	*ft_zalloc(size_t size);
+void	*ftmp_zalloc(size_t size);
 void	ft_free(void);
 
 #endif

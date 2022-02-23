@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_multi_join.c                                    :+:      :+:    :+:   */
+/*   get_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:52:20 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/19 11:27:12 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 12:54:58 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "env.h"
 
-char	*muljoin(char *str, va_list *args)
+char	*get_env_par(t_env *env, char *param)
 {
-	char	*to_join;
+	int		i;
+	char	*value;
 
-	to_join = va_arg(*args, char *);
-	while (to_join)
+	if (!env || !param || !env->envp)
+		return (err_return_null(M_ENV, ERR_NULL_PARAMS));
+	i = 0;
+	param = ft_strjoin(param, "=");
+	while (env->envp[i])
 	{
-		str = ft_strjoin(str, to_join);
-		to_join = va_arg(*args, char *);
+		if (strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+		{
+			value = ft_strdup(ft_strchr(env->envp[i], '=') + 1);
+			return (value);
+		}
+		i++;
 	}
-	return (str);
-}
-
-char	*ft_multi_join(const char *str, ...)
-{
-	va_list	args;
-	char	*ret;
-	char	*to_work;
-
-	to_work = ft_strdup(str);
-	va_start(args, str);
-	ret = muljoin(to_work, &args);
-	va_end(args);
-	return (ret);
+	return (ft_strdup(" "));
 }
