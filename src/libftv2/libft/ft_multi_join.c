@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:52:20 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/23 13:41:39 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*muljoin(char *str, va_list *args)
 	{
 		str = ft_strjoin(str, to_join);
 		to_join = va_arg(*args, char *);
+		ft_printf("_%p_\n", to_join);
 	}
 	return (str);
 }

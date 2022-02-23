@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:47:59 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 12:41:23 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:45:41 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ char	*ftmp_substr(char const *s, unsigned int start, size_t len);
 char	*ftmp_strjoin(char const *s1, char const *s2);
 char	*ftmp_strtrim(char const *s1, char const *set);
 char	**ftmp_split(char const *s, char c);
-char	*ftmp_multi_join(const char *str, ...);
+char	*ftmp_multi_join(const char *str, ...); // TODO
 
 #endif

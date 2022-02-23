@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 12:56:25 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:43:57 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int	set_env_par(t_env *env, char *param, char *val)
 
 	if (!env || !param || !val)
 		return (err_return_one(M_ENV, ERR_NULL_PARAMS));
-	join = ft_multi_join(param, "=", val); 
-	// join = ft_strjoin(param, "=");
-	// join = ft_strjoin(join, val);
+	// join = ft_multi_join(param, "=", val); // TOO
+	join = ft_strjoin(param, "=");
+	join = ft_strjoin(join, val);
 	if (env_par_exist(env, param))
 		rewrite_env_param(env, param, join);
 	else

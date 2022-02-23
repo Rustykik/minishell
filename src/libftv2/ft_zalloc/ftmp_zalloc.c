@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:20:18 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/22 17:37:05 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/23 13:19:57 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 extern t_heap	g_heap;
 
-void	tmp_alloc_error(int size)
+void	ftmp_free(void)
 {
-	ft_putstr_fd("ftmp_zalloc: cannot allocate ", 2);
-	ft_putnbr_fd(size, 2);
-	ft_putstr_fd("bytes", 2);
-	ft_free();
-	exit(2);
+	size_t	i;
+
+	i = 0;
+	while (i < g_heap.tmp_count)
+		free(g_heap.tmp_mem[i++]);
+	free(g_heap.tmp_mem);
 }
 
 void	ftmp_add(void *ptr)
@@ -30,7 +31,7 @@ void	ftmp_add(void *ptr)
 
 	new = malloc(sizeof(void *) * (g_heap.tmp_count + 1));
 	if (!new)
-		tmp_alloc_error(sizeof(void *) * (g_heap.tmp_count + 1));
+		alloc_error(sizeof(void *) * (g_heap.tmp_count + 1));
 	i = 0;
 	while (i < g_heap.tmp_count)
 	{
@@ -55,7 +56,7 @@ void	*ftmp_zalloc(size_t size)
 	}
 	ptr = malloc(size);
 	if (!ptr)
-		tmp_alloc_error(size);
+		alloc_error(size);
 	ftmp_add(ptr);
 	ft_bzero(ptr, size);
 	return (ptr);

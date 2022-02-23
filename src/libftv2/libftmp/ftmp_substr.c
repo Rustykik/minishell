@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:36:59 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/22 14:37:30 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:36:36 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ftmp_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if ((size_t) start >= ft_strlen(s))
 		return (ftmp_zalloc(sizeof(char)));
-	sze = (size_t)ft_min(ft_strlen(s + start), len);
+	sze = (size_t)ftmp_min(ft_strlen(s + start), len);
 	ret = ftmp_zalloc((sze + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);

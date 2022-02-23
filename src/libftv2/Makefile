@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
+#    By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 12:56:00 by ubeetroo          #+#    #+#              #
-#    Updated: 2022/02/18 02:01:14 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/23 14:34:52 by majacqua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,11 @@ FLAGS = -Wall -Werror -Wextra
 
 LIB_PATH = ./libft/
 
+LTM_PATH = ./libftmp/
+
 MAL_PATH = ./ft_zalloc/
 
-ALL_PATH = $(LIB_PATH)	$(MAL_PATH)
+ALL_PATH = $(LIB_PATH)	$(MAL_PATH) $(LTM_PATH)
 
 LIB_SRCS =		ft_atoi \
 				ft_bzero \
@@ -78,22 +80,29 @@ LIB_SRCS =		ft_atoi \
 				ft_multi_join
 
 
-MAL_SRCS =		ft_zalloc
-# SRCS_B =	ft_lstnew \
-# 			ft_lstadd_front \
-# 			ft_lstsize \
-# 			ft_lstlast \
-# 			ft_lstadd_back \
-# 			ft_lstdelone \
-# 			ft_lstclear \
-# 			ft_lstiter \
-# 			ft_lstmap
+MAL_SRCS =		ft_zalloc \
+				ftmp_zalloc 
+
+LTM_SRCS =		ftmp_gnl_ut \
+				ftmp_gnl \
+				ftmp_itoa \
+				ftmp_lstmap \
+				ftmp_lstnew \
+				ftmp_mult_join \
+				ftmp_split \
+				ftmp_strdup \
+				ftmp_strjoin \
+				ftmp_strmapi \
+				ftmp_strtrim \
+				ftmp_substr
 
 LIB_SRC = $(addprefix $(LIB_PATH), $(LIB_SRCS))
 
+LTM_SRC = $(addprefix $(LTM_PATH), $(LTM_SRCS))
+
 MAL_SRC = $(addprefix $(MAL_PATH), $(MAL_SRCS))
 
-ALL_SRC = $(LIB_SRC) $(MAL_SRC)
+ALL_SRC = $(LIB_SRC) $(MAL_SRC) $(LTM_SRC)
 
 SRC =  $(addsuffix .c, $(ALL_SRC))
 OBJ =  $(addsuffix .o, $(ALL_SRC))
@@ -102,9 +111,10 @@ OBJ =  $(addsuffix .o, $(ALL_SRC))
 # OBJ_B =  $(addsuffix .o, $(SRCS_B))
 
 LIB_INC = ./libft/libft.h 
+LTMP_INC = ./libftmp/libftmp.h 
 MAL_INC = ./ft_zalloc/ft_zalloc.h
 
-ALL_INC = $(LIB_INC) $(MAL_INC)
+ALL_INC = $(LIB_INC) $(LTM_INC) $(MAL_INC)
 
 INC = $(addprefix -I, $(ALL_PATHS))
 

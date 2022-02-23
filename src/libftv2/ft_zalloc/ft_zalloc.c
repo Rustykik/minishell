@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zalloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:34:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/18 02:00:14 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 14:27:35 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	alloc_error(int size)
 	ft_putnbr_fd(size, 2);
 	ft_putstr_fd("bytes", 2);
 	ft_free();
+	ftmp_free();
 	exit(2);
 }
 
