@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:52:38 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 13:02:27 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 14:39:08 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	init_commands(t_shell *shell, char **parsed)
 	while (++i < shell->cmds_count)
 		shell->cmds_arr[i] = init_cmd(parsed[i]);
 	// check_exit();
-	// if (nord_stream(shell) || parse_redirs(shell))
-	// 	return ;
-	// // parse_redirs(shell);
+	if (nord_stream(shell) || parse_redirs_cmds(shell))
+		return ;
+	// parse_redirs(shell);
 	// parse_commands(shell);
 }
  

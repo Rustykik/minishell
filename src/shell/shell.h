@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:10:37 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 14:44:52 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_shell	t_shell;
 
 struct	s_cmd
 {
-	char	*cmd;
 	char	*input;
+	char	*cmd;
 	int		fd[2];
 	int		*fds;
 };
