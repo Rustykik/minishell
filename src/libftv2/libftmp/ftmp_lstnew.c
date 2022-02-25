@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   ftmp_lstnew.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 05:17:50 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 07:31:55 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/22 14:31:55 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 14:36:14 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libftmp.h"
 
-char	*get_env(t_env *env, char *param)
+t_list	*ftmp_lstnew(void *data)
 {
-	char	*to_find;
-	char	*val;
+	t_list	*new;
 
-	to_find = param_exists(env, ft_strjoin(param, "="));
-	if (!to_find)
-		return (ft_strdup(" "));
-	val = ft_strdup(ft_strchr(to_find, '=') + 1);
-	return (val);
+	new = ftmp_zalloc(sizeof(t_list));
+	if (new == NULL)
+		return (NULL);
+	new->data = data;
+	new->next = NULL;
+	return (new);
 }

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   ftmp_lstmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 14:44:39 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 14:33:02 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 14:36:00 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#include "libftmp.h"
 
-/* GENERAL */
-# define PROMPT "¯\\_(ツ)_/¯:"
+t_list	*ftmp_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*ret;
+	t_list	**rett;
 
-/* MODULES */
-# define M_ENV	"Environment"
-# define M_PAR	"Parser"
-# define M_CD	"cd"
-
-/* ERRORS */
-# define ERR_NULL_PARAMS	"some parameters are NULL"
-
-/* ASCII */
-# define ASCII_ACK	6
-
-#endif
+	if (!lst)
+		return (NULL);
+	rett = &ret;
+	ret = NULL;
+	while (lst)
+	{
+		ft_lstadd_back(rett, ftmp_lstnew((*f)(lst->data)));
+		if (!ft_lstlast(*rett))
+		{
+			ft_lstclear(rett, del);
+			ret = NULL;
+			return (ret);
+		}
+		lst = lst->next;
+	}
+	return (*rett);
+}

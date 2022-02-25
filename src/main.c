@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/22 16:14:01 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 12:37:03 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	init_shell(t_shell *shell, char **envp)
 	char	*buf;
 
 	ft_bzero(shell, sizeof(t_shell));
-	shell->env = put_envp(envp);
-	buf = ft_itoa(ft_atoi(get_env(shell->env, "SHLVL")) + 1);
-	set_env(shell->env, "SHLVL", buf);
+	shell->env = init_env(envp);
+	buf = ft_itoa(ft_atoi(get_env_par(shell->env, "SHLVL")) + 1);
+	set_env_par(shell->env, "SHLVL", buf);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftv2.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:21:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/19 11:22:24 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/23 12:31:04 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFTV2_H
 
 # include "./libft/libft.h"
+# include "./libftmp/libftmp.h"
 # include "./ft_zalloc/ft_zalloc.h"
 
 #endif

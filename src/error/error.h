@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 14:44:39 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/19 13:53:07 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/19 16:22:48 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#ifndef ERROR_H
+# define ERROR_H
 
-/* GENERAL */
-# define PROMPT "¯\\_(ツ)_/¯:"
+# include "../libftv2/libftv2.h"
+# include "../const.h"
+# include "stdio.h"
 
-/* MODULES */
-# define M_ENV	"Environment"
-# define M_PAR	"Parser"
-# define M_CD	"cd"
-
-/* ERRORS */
-# define ERR_NULL_PARAMS	"some parameters are NULL"
-
-/* ASCII */
-# define ASCII_ACK	6
+int		err_return_one(char *module, char *text);
+void	*err_return_null(char *module, char *text);
+int		err_return_zero(char *module, char *type);
+int		err_return_zero(char *module, char *type);
 
 #endif

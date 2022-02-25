@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_zalloc.c                                        :+:      :+:    :+:   */
+/*   ftmp_zalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 20:34:52 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 14:27:35 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 12:20:18 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/23 13:19:57 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,50 @@
 
 extern t_heap	g_heap;
 
-void	ft_free(void)
+void	ftmp_free(void)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < g_heap.count)
-		free(g_heap.mem[i++]);
-	free(g_heap.mem);
+	while (i < g_heap.tmp_count)
+		free(g_heap.tmp_mem[i++]);
+	free(g_heap.tmp_mem);
 }
 
-void	alloc_error(int size)
-{
-	ft_putstr_fd("ft_zalloc: cannot allocate ", 2);
-	ft_putnbr_fd(size, 2);
-	ft_putstr_fd("bytes", 2);
-	ft_free();
-	ftmp_free();
-	exit(2);
-}
-
-void	add(void *ptr)
+void	ftmp_add(void *ptr)
 {
 	void		**new;
 	size_t		i;
 
-	new = malloc(sizeof(void *) * (g_heap.count + 1));
+	new = malloc(sizeof(void *) * (g_heap.tmp_count + 1));
 	if (!new)
-		alloc_error(sizeof(void *) * (g_heap.count + 1));
+		alloc_error(sizeof(void *) * (g_heap.tmp_count + 1));
 	i = 0;
-	while (i < g_heap.count)
+	while (i < g_heap.tmp_count)
 	{
-		new[i] = g_heap.mem[i];
+		new[i] = g_heap.tmp_mem[i];
 		i++;
 	}
-	new[g_heap.count] = ptr;
-	g_heap.count++;
-	if (g_heap.mem)
-		free(g_heap.mem);
-	g_heap.mem = new;
+	new[g_heap.tmp_count] = ptr;
+	g_heap.tmp_count++;
+	if (g_heap.tmp_mem)
+		free(g_heap.tmp_mem);
+	g_heap.tmp_mem = new;
 }
 
-void	*ft_zalloc(size_t size)
+void	*ftmp_zalloc(size_t size)
 {
 	void	*ptr;
 
-	if (!g_heap.count)
+	if (!g_heap.tmp_count)
 	{
-		g_heap.count = 0;
-		g_heap.mem = NULL;
+		g_heap.tmp_count = 0;
+		g_heap.tmp_mem = NULL;
 	}
 	ptr = malloc(size);
 	if (!ptr)
 		alloc_error(size);
-	add(ptr);
+	ftmp_add(ptr);
 	ft_bzero(ptr, size);
 	return (ptr);
 }

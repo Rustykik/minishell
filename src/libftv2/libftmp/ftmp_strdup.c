@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   ftmp_strdup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 14:44:39 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/22 13:05:59 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/22 14:28:55 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#include "libftmp.h"
 
-/* GENERAL */
-# define PROMPT "¯\\_(ツ)_/¯:"
+char	*ftmp_strdup(const char *s1)
+{
+	char		*ret;
+	size_t		len;
 
-/* MODULES */
-# define M_ENV	"Environment"
-# define M_PAR	"Parser"
-# define M_CD	"cd"
-
-/* ERRORS */
-# define ERR_NULL_PARAMS	"some parameters are NULL"
-
-/* ASCII */
-# define ASCII_ACK	6
-
-#endif
+	len = ft_strlen(s1);
+	ret = ftmp_zalloc(sizeof(char) * (len + 1));
+	if (ret == NULL)
+		return (NULL);
+	ft_memcpy(ret, s1, len);
+	ret[len] = '\0';
+	return (ret);
+}

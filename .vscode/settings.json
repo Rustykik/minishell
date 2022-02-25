@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"ft_zalloc.h": "c",
+		"libft.h": "c",
+		"stdlib.h": "c",
+		"libftmp.h": "c",
+		"string.h": "c"
+	}
+}
