@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 13:53:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/25 16:31:56 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/23 15:31:19 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/25 13:12:44 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "builtin.h"
 
-# include "../libftv2/libftv2.h"
-# include "../const.h"
-# include "stdio.h"
+int	cmd_env(char **args, t_env *env)
+{
+	size_t	i;
 
-int		err_return_one(char *module, char *text);
-void	*err_return_null(char *module, char *text);
-int		err_return_zero(char *module, char *type);
-int		err_return_zero(char *module, char *type);
-
-int	err_ext_return_one(char *module, char *text, char *name);
-
-#endif
+	if (!env || !env->envp)
+		return (err_return_one(M_ENV, ERR_NO_ENV));
+	i = 0;
+	if (args && args[i] != NULL)
+		return (err_return_one(M_ENV, ERR_MN_ARGS));
+	while (i < env->len)
+	{
+		ft_putstr_fd(env->envp[i], 1);
+		ft_putchar_fd('\n', 1);
+		i++;
+	}
+	return (0);
+}
