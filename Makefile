@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/23 11:13:52 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/26 22:05:12 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,19 @@ ENV_SRCS = 	env/get_env \
 
 PARS_SRCS = parser/cut_spaces \
 			parser/put_global \
-			parser/parse_pipes
+			parser/parse_pipes \
+			parser/parse_redir \
+			parser/parse_commands
 
-CMDS_SRCS = commands/init_commands
+REDIR_SRCS = 	redirect/open_in_outs	
 
-SHELL_SRCS = shell/shell
+CMDS_SRCS = 	commands/put_redir
+
+SHELL_SRCS = 	shell/init_commands \
+				shell/put_redir_cmds
 
 MAIN_SRCS = $(ENV_SRCS)		$(PARS_SRCS) \
-			$(SHELL_SRCS)	$(CMDS_SRCS) main
+			$(SHELL_SRCS)	$(CMDS_SRCS) $(REDIR_SRCS) main
 
 MAIN_SRC = $(addprefix ./src/, $(addsuffix .c, $(MAIN_SRCS)))
 

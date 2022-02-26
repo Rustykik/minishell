@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 13:17:25 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/23 09:30:25 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/26 17:15:46 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 size_t	ft_split_len(char **split);
+char	*ft_str_translate(char *line, char was, char will);
 
 /* MATH */
 int		ft_pow(int nb, int power);

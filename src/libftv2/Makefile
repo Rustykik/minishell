@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 12:56:00 by ubeetroo          #+#    #+#              #
-#    Updated: 2022/02/23 09:31:41 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/26 17:16:26 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,9 @@ LIB_SRCS =		ft_atoi \
 				ft_putstr_fd_printf \
 				ft_strlen_printf \
 				ft_multi_join \
-				ft_split_len
+				ft_split_len \
+				ft_str_translate
+
 
 
 MAL_SRCS =		ft_zalloc
