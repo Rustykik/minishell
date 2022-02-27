@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/26 18:49:19 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:54:20 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	export_par(char *str, t_env *env, char **err_str)
 	if (strchr(str, '='))
 	{
 		par = ft_strtrim(str, " ");
-		val = ft_strdup(" "); 
+		val = ft_strdup(""); 
 	}
 	else
 	{
