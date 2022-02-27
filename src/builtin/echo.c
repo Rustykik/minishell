@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 13:53:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/25 16:31:56 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/25 13:25:18 by majacqua          #+#    #+#             */
+/*   Updated: 2022/02/25 15:17:05 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "builtin.h"
 
-# include "../libftv2/libftv2.h"
-# include "../const.h"
-# include "stdio.h"
+void	print_args(char **args, int i)
+{
+	while (args[i])
+	{
+		ft_putstr_fd(args[i], 1);
+		if (args[i + 1])
+			ft_putchar_fd(' ', 1);
+		i++;
+	}
+}
 
-int		err_return_one(char *module, char *text);
-void	*err_return_null(char *module, char *text);
-int		err_return_zero(char *module, char *type);
-int		err_return_zero(char *module, char *type);
-
-int	err_ext_return_one(char *module, char *text, char *name);
-
-#endif
+int	cmd_echo(char **args, t_env *env)
+{
+	(void)env;
+	if (ft_strcmp(args[0], "-n") == 0)
+		print_args(args, 1);
+	else
+	{
+		print_args(args, 0);
+		ft_putchar_fd('\n', 1);
+	}
+	return (0);
+}
