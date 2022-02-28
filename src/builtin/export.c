@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/27 13:54:20 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	export_par(char *str, t_env *env, char **err_str)
 	}
 	if (!*par && check_env_par(par))
 		*err_str = par;
-	return (set_env_par(par, val, env));
+	return (set_env(par, val, env));
 }
 
 int	cmd_export(char **args, t_env *env)

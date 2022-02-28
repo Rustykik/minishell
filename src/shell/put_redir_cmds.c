@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_ext.c                                        :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 16:31:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/25 16:35:51 by majacqua         ###   ########.fr       */
+/*   Created: 2022/02/18 00:35:53 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/26 19:29:01 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	err_ext_return_one(char *module, char *text, char *name);
+#include "shell.h"
+
+int	put_redir_cmds(t_shell *shell)
 {
-	ft_putstr_fd(module, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(text, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(name, 2);
-	ft_putstr_fd("\n", 2);
-	return (1);
+	int	i;
+
+	i = -1;
+	while (++i < shell->cmds_count)
+		if (parse_redir(shell->cmds_arr[i]) || \
+		parse_commands(shell->cmds_arr[i]))
+			return (1);
+	return (0);
 }

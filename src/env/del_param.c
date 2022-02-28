@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   del_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 12:43:00 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:50 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	new_envp_del(t_env *old_env, char **tmp, char *param)
 	}
 }
 
-int	del_env_par(t_env *env, char *param)
+int	del_env(t_env *env, char *param)
 {
 	char	**tmp;
 

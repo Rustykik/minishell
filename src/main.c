@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:37:03 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int	init_shell(t_shell *shell, char **envp)
 
 	ft_bzero(shell, sizeof(t_shell));
 	shell->env = init_env(envp);
-	buf = ft_itoa(ft_atoi(get_env_par(shell->env, "SHLVL")) + 1);
-	set_env_par(shell->env, "SHLVL", buf);
+	buf = ft_itoa(ft_atoi(get_env(shell->env, "SHLVL")) + 1);
+	set_env(shell->env, "SHLVL", buf);
 	return (0);
 }
 
 void	execute_input(t_shell *shell, char *read)
 {
 	char	*str;
+	char	**parsed;
 
 	str = ft_strdup(read);
 	// check_input(str);
@@ -34,6 +35,16 @@ void	execute_input(t_shell *shell, char *read)
 
 	str = put_global(shell->env, str);
 	printf("%s\n", str);
+	parsed = parse_pipes(str);
+	if (!parsed)
+		return ;
+	shell->cmds_count = ft_split_len(parsed);
+	init_commands(shell, parsed);
+	pipex(shell);
+	// for (int i = 0; parsed[i]; ++i)
+	// {
+	// 	printf("%s\n", parsed[i]);
+	// }
 	// ft_free_tmp();
 }
 

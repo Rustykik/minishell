@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:51:53 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/26 18:38:59 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:50 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	cmd_unset(char **args, t_env *env)
 		if (!err_str && check_env_par(args[i]))
 			err_str = args[i];
 		if (env_par_exist(env, args[i]))
-			del_env_par(env, args[i]);
+			del_env(env, args[i]);
 		i++;
 	}
 	if (err_str)

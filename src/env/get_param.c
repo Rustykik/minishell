@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:27:12 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 12:54:58 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:19 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-char	*get_env_par(t_env *env, char *param)
+char	*get_env(t_env *env, char *param)
 {
 	int		i;
 	char	*value;

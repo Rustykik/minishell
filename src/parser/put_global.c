@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_global.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 07:57:51 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 12:37:31 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:19 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	find_len(t_env *env, char *str, t_list	**vals)
 		name = get_name(&str[i]);
 		if (name)
 		{
-			add_len += ft_strlen(get_env_par(env, name)) - 1;
+			add_len += ft_strlen(get_env(env, name)) - 1;
 			str += ft_strlen(name);
-			ft_lstadd_back(vals, ft_lstnew(get_env_par(env, name)));
+			ft_lstadd_back(vals, ft_lstnew(get_env(env, name)));
 		}
 		else if (str[i])
 			++i;

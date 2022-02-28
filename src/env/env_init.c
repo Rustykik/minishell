@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:45 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 12:42:45 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_env	*init_env(char **envp)
 	env = ft_zalloc(sizeof(t_env) * size);
 	env->len = size;
 	copy_envp(env, envp);
-	set_env_par(env, "?", "0");
+	set_env(env, "?", "0");
 	return (env);
 }

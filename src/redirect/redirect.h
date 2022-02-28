@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 13:53:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:53:10 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 12:36:08 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/26 22:08:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef REDIRECT_H
+# define REDIRECT_H
 
-# include "../libftv2/libft/libft.h"
-# include "../const.h"
-# include "stdio.h"
+// # include <unistd.h>
+# include <fcntl.h>
 
-int		err_return_one(char *module, char *text);
-void	*err_return_null(char *module, char *text);
-int		err_return_zero(char *module, char *type);
-int		err_return_zero(char *module, char *type);
+# include <readline/readline.h>
+# include "../libftv2/libftv2.h"
+// # include "../commands/commands.h"
+// # include "../shell/shell.h"
 
-int		err_ext_return_one(char *module, char *text, char *name);
+# define IN 1
+# define OUT 2
+# define IN_DOC 3
+# define OUT_DOC 4
+
+typedef struct s_redir	t_redir;
+
+struct s_redir
+{
+	int		type;
+	int		fd;
+	char	*file;
+};
+
+int	open_file(t_redir *new);
 
 #endif

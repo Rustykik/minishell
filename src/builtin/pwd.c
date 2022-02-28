@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:43:34 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/26 13:10:34 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:19 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	cmd_pwd(char **args, t_env *env)
 		return (err_return_one(M_ENV, ERR_NO_ENV));
 	if (args && args[0])
 		return (err_return_one(M_PWD, ERR_MN_ARGS));
-	value = get_env_par(env, "PWD");
+	value = get_env(env, "PWD");
 	if (!value)
 		return (err_return_one(M_ENV, ERR_NO_ENV));
 	ft_putstr_fd(value, 1);

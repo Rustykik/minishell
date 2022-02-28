@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/23 14:43:57 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	rewrite_env_param(t_env *env, char *param, char *join)
 	}
 }
 
-int	set_env_par(t_env *env, char *param, char *val)
+int	set_env(t_env *env, char *param, char *val)
 {
 	char	**tmp;
 	char	*join;
