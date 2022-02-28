@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/26 22:05:12 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/28 02:36:54 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,10 @@ CMDS_SRCS = 	commands/put_redir
 SHELL_SRCS = 	shell/init_commands \
 				shell/put_redir_cmds
 
+PIPEX_SRCS =	pipexv2/pipex
+
 MAIN_SRCS = $(ENV_SRCS)		$(PARS_SRCS) \
-			$(SHELL_SRCS)	$(CMDS_SRCS) $(REDIR_SRCS) main
+			$(SHELL_SRCS)	$(CMDS_SRCS) $(REDIR_SRCS) $(PIPEX_SRCS) main
 
 MAIN_SRC = $(addprefix ./src/, $(addsuffix .c, $(MAIN_SRCS)))
 

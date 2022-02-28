@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 21:56:05 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 02:48:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_shell	t_shell;
 
 struct s_shell
 {
+	int		pid_c;
 	char	*input;
 	t_env	*env;
 	int		cmds_count;

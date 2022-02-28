@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 07:47:13 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 09:24:16 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 02:56:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**parse_pipes(char *input)
 	input = replace_pipes(input);
 	if (!input)
 		return (NULL); // unclosed quotes 
-	input = ft_strtrim(input, " "); // may be delete
+	// input = ft_strtrim(input, " "); // may be delete
 	if (!input)
 		return (NULL);
 	ret = ft_split(check_pipe(input), '\6');

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:09:40 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 21:54:52 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/27 15:06:49 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_cmd	t_cmd;
 
 struct	s_cmd
 {
+	int		pid;
 	char	*input;
 	char	*cmd_name;
 	char	**args;

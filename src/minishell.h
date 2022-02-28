@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:32:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 11:20:01 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 02:37:40 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 // # include "./libftv2/libftv2.h"
 # include "./commands/commands.h"
+# include "./pipexv2/pipex.h"
 # include "./parser/parser.h"
 # include "./shell/shell.h"
 # include "./env/env.h"
