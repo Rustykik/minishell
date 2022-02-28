@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:53:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/27 23:10:09 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 13:25:07 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	parse_commands(t_cmd *cmd)
 			quote = input[i++];
 			while (input[i] && input[i] != quote)
 				++i;
-			++i;
 		}
 		input[i] = input[i] * !(input[i] == ' ') + 6 * (input[i] == ' ');
 	}

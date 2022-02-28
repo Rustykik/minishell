@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_multi_join.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 13:41:39 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:26:46 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*muljoin(char *str, va_list *args)
 	{
 		str = ft_strjoin(str, to_join);
 		to_join = va_arg(*args, char *);
-		ft_printf("_%p_\n", to_join);
 	}
 	return (str);
 }
