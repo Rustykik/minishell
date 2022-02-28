@@ -6,34 +6,35 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:46:17 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 13:26:46 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 22:20:36 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*muljoin(char *str, va_list *args)
+char	*muljoin(size_t amount, va_list *args)
 {
 	char	*to_join;
+	char	*str;
+	size_t	i;
 
-	to_join = va_arg(*args, char *);
-	while (to_join)
+	i = 0;
+	str = va_arg(*args, char *);
+	while (++i < amount)
 	{
-		str = ft_strjoin(str, to_join);
 		to_join = va_arg(*args, char *);
+		str = ft_strjoin(str, to_join);
 	}
 	return (str);
 }
 
-char	*ft_multi_join(const char *str, ...)
+char	*ft_multi_join(size_t	amount, ...)
 {
 	va_list	args;
 	char	*ret;
-	char	*to_work;
 
-	to_work = ft_strdup(str);
-	va_start(args, str);
-	ret = muljoin(to_work, &args);
+	va_start(args, amount);
+	ret = muljoin(amount, &args);
 	va_end(args);
 	return (ret);
 }

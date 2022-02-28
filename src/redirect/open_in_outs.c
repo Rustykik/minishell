@@ -6,12 +6,11 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:20:26 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 17:18:42 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 21:56:03 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "redirect.h"
-
 
 int	here_doc(t_redir *new)
 {
@@ -54,7 +53,6 @@ int	open_file(t_redir *new)
 {
 	if (new->type == IN_DOC)
 	{
-		// signal(SIGINT, here_doc_handler);
 		// signal(SIGINT, here_doc_handler);
 		return (here_doc(new));
 	}

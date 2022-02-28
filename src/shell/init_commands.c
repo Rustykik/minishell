@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:52:38 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 16:39:54 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 20:17:00 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_cmd	*init_cmd(char *cmd)
 	ret = ft_zalloc(sizeof(t_cmd));
 	ret->input = ft_strtrim(cmd, " ");
 	// ret->input = cmd;
-	ft_printf("cmd inp addres - [%p]\n", ret->input);
-	ft_printf("command input -[%s]\n", ret->input);
+	// ft_printf("cmd inp addres - [%p]\n", ret->input);
+	// ft_printf("command input -[%s]\n", ret->input);
 	ret->fd[0] = 0;
 	ret->fd[1] = 1;
 	return (ret);

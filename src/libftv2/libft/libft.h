@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 13:17:25 by ubeetroo          #+#    #+#             */
-/*   Updated: 2022/02/26 17:15:46 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 22:17:41 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ char	*ft_str_translate(char *line, char was, char will);
 int		ft_pow(int nb, int power);
 
 /*to_test*/
-char	*ft_multi_join(const char *str, ...);
+char	*ft_multi_join(size_t	amount, ...);
 
 #endif
