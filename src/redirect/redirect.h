@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 21:57:31 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/23 12:36:08 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/26 22:08:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef REDIRECT_H
+# define REDIRECT_H
 
-# include "../commands/commands.h"
-# include "../redirect/redirect.h"
+// # include <unistd.h>
+# include <fcntl.h>
+
+# include <readline/readline.h>
 # include "../libftv2/libftv2.h"
-# include "../env/env.h"
+// # include "../commands/commands.h"
+// # include "../shell/shell.h"
 
-# include "stdio.h" //delete me
+# define IN 1
+# define OUT 2
+# define IN_DOC 3
+# define OUT_DOC 4
 
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
+typedef struct s_redir	t_redir;
 
-int		parse_commands(t_cmd *cmd);
-int		parse_redir(t_cmd *cmd);
+struct s_redir
+{
+	int		type;
+	int		fd;
+	char	*file;
+};
+
+int	open_file(t_redir *new);
 
 #endif

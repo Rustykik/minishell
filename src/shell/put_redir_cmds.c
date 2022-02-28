@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 11:12:34 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 21:57:31 by rusty            ###   ########.fr       */
+/*   Created: 2022/02/18 00:35:53 by rusty             #+#    #+#             */
+/*   Updated: 2022/02/26 19:29:01 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "shell.h"
 
-# include "../commands/commands.h"
-# include "../redirect/redirect.h"
-# include "../libftv2/libftv2.h"
-# include "../env/env.h"
+int	put_redir_cmds(t_shell *shell)
+{
+	int	i;
 
-# include "stdio.h" //delete me
-
-char	*cut_spaces(char *input);
-char	*put_global(t_env *env, char *str);
-char	**parse_pipes(char *input);
-
-int		parse_commands(t_cmd *cmd);
-int		parse_redir(t_cmd *cmd);
-
-#endif
+	i = -1;
+	while (++i < shell->cmds_count)
+		if (parse_redir(shell->cmds_arr[i]) || \
+		parse_commands(shell->cmds_arr[i]))
+			return (1);
+	return (0);
+}

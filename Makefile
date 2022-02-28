@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+         #
+#    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/23 12:56:53 by majacqua         ###   ########.fr        #
+#    Updated: 2022/02/28 03:32:20 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,22 @@ ENV_SRCS = 	env/set_param \
 			env/env_init
 
 PARS_SRCS = parser/cut_spaces \
-			parser/put_global
+			parser/put_global \
+			parser/parse_pipes \
+			parser/parse_redir \
+			parser/parse_commands
 
-ERR_SRCS =	error/error
+REDIR_SRCS = 	redirect/open_in_outs	
 
-SHELL_SRCS = shell/shell
+CMDS_SRCS = 	commands/put_redir
+
+SHELL_SRCS = 	shell/init_commands \
+				shell/put_redir_cmds
+
+PIPEX_SRCS =	pipexv2/pipex
 
 MAIN_SRCS = $(ENV_SRCS)		$(PARS_SRCS) \
-			$(SHELL_SRCS)	$(ERR_SRCS) \
-			main
+			$(SHELL_SRCS)	$(CMDS_SRCS) $(REDIR_SRCS) $(PIPEX_SRCS) main
 
 MAIN_SRC = $(addprefix ./src/, $(addsuffix .c, $(MAIN_SRCS)))
 
@@ -41,10 +48,10 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(MAIN_OBJ)
 	$(COMP) $(MAIN_OBJ) $(LIBFT) -o $@ -lreadline
 
-%.o: %.c Makefile
+%.o: %.c Makefile $(LIBFT)
 	$(COMP) -c $< -o $@ -I./src/env/ -I./src/libftv2/libft/ 
 
-$(LIBFT):
+$(LIBFT): ./src/libftv2/ft_zalloc/*.c ./src/libftv2/ft_zalloc/*.h ./src/libftv2/libft/*.c ./src/libftv2/libft/*.h ./src/libftv2/Makefile ./src/libftv2/libftv2.h
 	make -C ./src/libftv2/
 
 clean:
