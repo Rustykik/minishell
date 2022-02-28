@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 17:12:00 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 20:02:44 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	exec_cmd(t_cmd *cmd, t_shell *shell)
 	// int		exists;
 
 	// i = -1;
-	if (cmd->cmd_name[0] == '.' || cmd->cmd_name[0] == '/')
+	if (cmd->cmd_name[0] == '.')
 		full_cmd = add_pwd(get_env(shell->env, "PWD"), cmd->cmd_name); // maybe join pwd
 	else
 		full_cmd = find_path(ft_split(get_env(shell->env, "PATH"), ':'), cmd->cmd_name);
@@ -90,7 +90,7 @@ void	exec_cmd(t_cmd *cmd, t_shell *shell)
 
 void	pre_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
-	// signal(SIG_QUIT, handler_child_quit); // write coredump and exit with correct exit status;
+	signal(SIGQUIT, handler_child_quit); // write coredump and exit with correct exit status;
 	if (dup2(cmd->fd[0], 0) == -1 || dup2(cmd->fd[1], 1) == -1)
 	{
 		close_all(shell);
@@ -121,8 +121,8 @@ void	run_multi_commands(t_shell *shell)
 			ft_printf("minishell: fork:\n"); //strerror(errno)
 		else if (shell->cmds_arr[i]->pid > 0)
 		{
-			// signal(SIGINT, sig_int_proc);
-			// signal(SIGQUIT, sig_int_proc);
+			signal(SIGINT, sig_int_proc);
+			signal(SIGQUIT, sig_int_proc);
 			shell->pid_c = shell->cmds_arr[i]->pid;
 		}
 		else if (shell->cmds_arr[i]->pid == 0)

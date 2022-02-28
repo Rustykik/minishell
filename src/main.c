@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 16:39:20 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 18:58:07 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	execute_input(t_shell *shell, char *read)
 	// printf("%s\n", str);
 
 	str = put_global(shell->env, str);
-	printf("%s\n", str);
+	// printf("%s\n", str);
 	parsed = parse_pipes(str);
 	if (!parsed)
 		return ;
@@ -47,8 +47,6 @@ void	execute_input(t_shell *shell, char *read)
 	// }
 	// ft_free_tmp();
 }
-
-t_heap	g_heap;
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -63,14 +61,11 @@ int	main(int argc, char **argv, char **envp)
 		return (1); // ?
 	while (!shell.exit)
 	{
-		shell.cmds = 0;// ?bzero
-		// signal(SIGQUIT, SIG_IGN);
-		// signal(SIGINT, sig_int_empty);
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, sig_int_empty);
 		read = readline(PROMPT);
-		if (!read)
+		if (check_exit_eof(read))
 			break ;
-		// if (check_int_skip(&shell, read))
-		// 	continue ;
 		if (ft_strlen(read) > 0)
 			add_history(read);
 		execute_input(&shell, read);

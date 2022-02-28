@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 13:29:39 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 19:11:53 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CONST_H
 
 /* GENERAL */
-# define PROMPT "$>"
+# define PROMPT "$> "
 
 /* MODULES */
 # define M_ENV	"Environment"
@@ -36,6 +36,5 @@
 
 /* ASCII */
 # define ASCII_ACK	6
-
 
 #endif

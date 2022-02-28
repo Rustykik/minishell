@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/28 15:28:38 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/28 18:48:19 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,31 +16,33 @@ COMP = gcc -g -Wall -Werror -Wextra -fsanitize=address
 
 LIBFT = ./src/libftv2/libft.a
 
-ERROR_SRCS = 	error/error_exit \
+ERROR_SRCS	= 	error/error_exit \
 				error/error
 
-ENV_SRCS = 	env/set_param \
-			env/get_param \
-			env/del_param \
-			env/env_init
+ENV_SRCS	= 	env/set_param \
+				env/get_param \
+				env/del_param \
+				env/env_init
 
-PARS_SRCS = parser/cut_spaces \
-			parser/put_global \
-			parser/parse_pipes \
-			parser/parse_redir \
-			parser/parse_commands
+PARS_SRCS	= 	parser/cut_spaces \
+				parser/put_global \
+				parser/parse_pipes \
+				parser/parse_redir \
+				parser/parse_commands
 
-REDIR_SRCS = 	redirect/open_in_outs	
+REDIR_SRCS	= 	redirect/open_in_outs	
 
-CMDS_SRCS = 	commands/put_redir
+CMDS_SRCS	= 	commands/put_redir
 
-SHELL_SRCS = 	shell/init_commands \
+SHELL_SRCS	= 	shell/init_commands \
 				shell/put_redir_cmds
 
-PIPEX_SRCS =	pipexv2/pipex
+PIPEX_SRCS	=	pipexv2/pipex
 
-MAIN_SRCS = $(ERROR_SRCS)	$(ENV_SRCS)		$(PARS_SRCS) \
-			$(SHELL_SRCS)	$(CMDS_SRCS) $(REDIR_SRCS) $(PIPEX_SRCS) main
+SIG_SRCS	=	signals/signals
+
+MAIN_SRCS = $(ERROR_SRCS)	$(ENV_SRCS)		$(PARS_SRCS)	$(SIG_SRCS) \
+			$(SHELL_SRCS)	$(CMDS_SRCS)	$(REDIR_SRCS)	$(PIPEX_SRCS) main
 
 MAIN_SRC = $(addprefix ./src/, $(addsuffix .c, $(MAIN_SRCS)))
 

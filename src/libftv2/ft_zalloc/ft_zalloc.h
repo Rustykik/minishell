@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zalloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:54:48 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/23 13:21:44 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:53:22 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	*ftmp_zalloc(size_t size);
 void	ft_free(void);
 void	ftmp_free(void);
 void	alloc_error(int size);
+
+t_heap	g_heap;
 
 #endif
