@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 02:48:14 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 16:40:05 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ struct s_shell
 };
 
 int		put_redir_cmds(t_shell *shell);
-void	init_commands(t_shell *shell, char **parsed);
+int		init_commands(t_shell *shell, char **parsed);
 
 #endif

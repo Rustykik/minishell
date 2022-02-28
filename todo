@@ -17,3 +17,5 @@
 
 [ ] add errors messages in return in command and redirect parsings 
 
+[ ] errro message in check redir in
+	put_redir.c :17 :37

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:20:26 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 22:26:39 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 17:18:42 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,14 @@ int	here_doc(t_redir *new)
 	{
 		line = readline(">");
 		if (!line)
-			return (0);
+			return (0); //minishell: here-document delimited by end-of-file (wanted `lim')
 		if (!ft_strncmp(line, new->file, ft_strlen(new->file)))
 		{
 			free(line);
 			break ;
 		}
 		else
-		{
 			ft_putstr_fd(line, fd[1]);
-			// maybe write new line
-		}
 		free(line);
 	}
 	close(fd[0]);

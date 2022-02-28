@@ -6,7 +6,7 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/28 04:05:16 by rusty            ###   ########.fr        #
+#    Updated: 2022/02/28 15:28:38 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,4 +66,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all
+	./minishell
+
+.PHONY: all clean fclean re run

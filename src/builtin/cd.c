@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:19:39 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:46:42 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	args_length(char **args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])
@@ -28,7 +28,7 @@ int	cmd_cd(char **args, t_env *env)
 	int		status;
 
 	if (args_length(args) == 0)
-		return (0);	
+		return (0);
 	if (args_length(args) > 1)
 		return (err_return_one(M_CD, ERR_MN_ARGS));
 	if (chdir(args[0]) == -1)

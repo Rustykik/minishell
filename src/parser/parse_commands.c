@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:53:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 13:25:07 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 16:47:32 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	parse_commands(t_cmd *cmd)
 			while (input[i] && input[i] != quote)
 				++i;
 		}
-		input[i] = input[i] * !(input[i] == ' ') + 6 * (input[i] == ' ');
+		input[i] = input[i] * !(input[i] == ' ') + '\6' * (input[i] == ' ');
 	}
 	cmd->args = ft_split(input, '\6');
-	i = -1;
 	cmd->cmd_name = cmd->args[0];
 	// cmd->abs_path = get_abs_path
 	return (0);

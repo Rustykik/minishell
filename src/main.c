@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 04:04:00 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 16:39:20 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	execute_input(t_shell *shell, char *read)
 	if (!parsed)
 		return ;
 	shell->cmds_count = ft_split_len(parsed);
-	init_commands(shell, parsed);
-	pipex(shell);
+	if (!init_commands(shell, parsed))
+		pipex(shell);
 	// for (int i = 0; parsed[i]; ++i)
 	// {
 	// 	printf("%s\n", parsed[i]);

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 02:53:05 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 17:12:00 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	exec_cmd(t_cmd *cmd, t_shell *shell)
 		full_cmd = add_pwd(get_env(shell->env, "PWD"), cmd->cmd_name); // maybe join pwd
 	else
 		full_cmd = find_path(ft_split(get_env(shell->env, "PATH"), ':'), cmd->cmd_name);
-	// add checkdir
+	// if (check_not_dir(full_cmd)
+	//	 exit(126); // minishell: full cmd: Is a directory
 	if (access(full_cmd, F_OK) == -1)
 		exit (127); // recheck exit status command does not found
 	if (access(full_cmd, X_OK) == -1)

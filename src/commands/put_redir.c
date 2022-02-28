@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:18:06 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 22:20:30 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 16:33:22 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_redir(char *str)
 {
 	if (str[0] == '>' && str[1] == '<')
-		return (1);
+		return (1); // `<'
 	if (!ft_strchr("<>", *str))
 		return (1);
 	if (ft_strchr("<>", *str))
@@ -74,7 +74,7 @@ int	put_redir(t_cmd *cmd, char *str)
 	if (!cur_redir && cmd->fd[in_out] > 2)
 		close(cmd->fd[in_out]);
 	if (cur_redir)
-		close(cmd->left->fd);
+		close(cur_redir->fd);
 	cur_redir = red;
 	if (cmd->left)
 		cmd->fd[0] = cmd->left->fd;

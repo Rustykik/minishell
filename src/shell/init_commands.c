@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:52:38 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 13:22:08 by rusty            ###   ########.fr       */
+/*   Updated: 2022/02/28 16:39:54 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	nord_stream(t_shell *shell)
 	{
 		if (pipe(fd) < 0)
 			return (1); // pipe error
-		shell->cmds_arr[i - 1]->fd[0] = fd[0];
+		shell->cmds_arr[i]->fd[0] = fd[0];
 		shell->cmds_arr[i - 1]->fd[1] = fd[1]; 
 	}
 
@@ -44,7 +44,7 @@ int	nord_stream(t_shell *shell)
 }
 
 
-void	init_commands(t_shell *shell, char **parsed)
+int	init_commands(t_shell *shell, char **parsed)
 {
 	int	i;
 
@@ -55,8 +55,9 @@ void	init_commands(t_shell *shell, char **parsed)
 		shell->cmds_arr[i] = init_cmd(parsed[i]);
 	// check_exit();
 	if (nord_stream(shell) || put_redir_cmds(shell))
-		return ;
+		return (1);
 	// parse_redirs(shell);
 	// parse_commands(shell);
+	return (0);
 }
  
