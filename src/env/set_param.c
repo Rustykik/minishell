@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 15:40:04 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:31:53 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	env_par_exist(t_env *env, char *param)
 	i = 0;
 	while (env->envp[i] && i < env->len)
 	{
-		if (ft_strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+		if (ft_strncmp(env->envp[i], param, ft_strlen(env->envp[i])) == 0)
 			return (1);
 		i++;
 	}
@@ -50,7 +50,7 @@ void	rewrite_env_param(t_env *env, char *param, char *join)
 	{
 		if (env->envp[i])
 		{
-			if (ft_strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+			if (ft_strncmp(env->envp[i], param, ft_strlen(env->envp[i])) == 0)
 				env->envp[i] = join;
 		}
 		i++;
@@ -65,7 +65,6 @@ int	set_env(t_env *env, char *param, char *val)
 	if (!env || !param || !val)
 		return (1);
 	join = ft_multi_join(3, param, "=", val);
-	// printf("envset [%s]\n", join);
 	if (env_par_exist(env, param))
 		rewrite_env_param(env, param, join);
 	else
