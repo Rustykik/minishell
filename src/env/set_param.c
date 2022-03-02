@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:40:04 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,9 @@ int	set_env(t_env *env, char *param, char *val)
 	char	*join;
 
 	if (!env || !param || !val)
-		return (err_return_one(M_ENV, ERR_NULL_PARAMS));
-	// join = ft_multi_join(param, "=", val); // TOO
-	join = ft_strjoin(param, "=");
-	join = ft_strjoin(join, val);
+		return (1);
+	join = ft_multi_join(3, param, "=", val);
+	// printf("envset [%s]\n", join);
 	if (env_par_exist(env, param))
 		rewrite_env_param(env, param, join);
 	else

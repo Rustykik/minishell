@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   del_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:47:50 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:41:54 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	del_env(t_env *env, char *param)
 	char	**tmp;
 
 	if (!env || !param || !env->envp)
-		return (err_return_one(M_ENV, ERR_NULL_PARAMS));
+		return (1);
 	if (env_par_exist(env, param))
 	{
 		tmp = ft_zalloc(sizeof(char *) * (env->len));

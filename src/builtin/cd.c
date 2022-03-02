@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:19:39 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 15:46:42 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:45:01 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ int	cmd_cd(char **args, t_env *env)
 	if (chdir(args[0]) == -1)
 		return (err_ext_return_one(M_CD, ERR_NO_FILE, args[0]));
 	status = 0;
-	tmp = get_env("PWD", env);
-	if (set_env("OLDPWD", tmp, env))
+	tmp = get_env(env, "PWD");
+	if (set_env(env, "OLDPWD", tmp))
 		status = 1;
 	tmp = getwd(tmp);
-	if (set_env("PWD", tmp, env))
+	if (set_env(env, "PWD", tmp))
 		status = 1;
-	// free(tmp); !!! Показывает что ликов нет.
 	return (status);
 }

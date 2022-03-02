@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
+#    By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/02/28 18:48:19 by rusty            ###   ########.fr        #
+#    Updated: 2022/03/02 14:36:33 by majacqua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,14 @@ PARS_SRCS	= 	parser/cut_spaces \
 				parser/parse_redir \
 				parser/parse_commands
 
+BUIL_SRCS	=	builtin/builtin \
+				builtin/cd \
+				builtin/echo \
+				builtin/env \
+				builtin/export \
+				builtin/pwd \
+				builtin/unset
+
 REDIR_SRCS	= 	redirect/open_in_outs	
 
 CMDS_SRCS	= 	commands/put_redir
@@ -42,7 +50,8 @@ PIPEX_SRCS	=	pipexv2/pipex
 SIG_SRCS	=	signals/signals
 
 MAIN_SRCS = $(ERROR_SRCS)	$(ENV_SRCS)		$(PARS_SRCS)	$(SIG_SRCS) \
-			$(SHELL_SRCS)	$(CMDS_SRCS)	$(REDIR_SRCS)	$(PIPEX_SRCS) main
+			$(SHELL_SRCS)	$(CMDS_SRCS)	$(REDIR_SRCS)	$(PIPEX_SRCS) \
+			$(BUIL_SRCS) main
 
 MAIN_SRC = $(addprefix ./src/, $(addsuffix .c, $(MAIN_SRCS)))
 

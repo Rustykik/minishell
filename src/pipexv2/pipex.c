@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 22:42:12 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:38:04 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	pre_exec_cmd(t_cmd *cmd, t_shell *shell)
 	close_all(shell);
 	if (cmd->cmd_name)
 	{
-		// if (builtin)
-		// 	exec_builtin();
+		if (is_cmd(cmd->cmd_name))
+			run_cmd(cmd, shell->env);
 		if (!ft_strncmp(cmd->cmd_name, "exit", ft_strlen("exit")))
 			exit (0);
 		exec_cmd(cmd, shell);
@@ -160,7 +160,7 @@ void	wait_all_children(t_shell *shell)
 	wstat = 0;
 	while (++i < shell->cmds_count)
 	{
-		ret = waitpid(0, &wstat, 0); // maybe add wnohang
+		ret = waitpid(0, &wstat, 0); 
 		cmd = who_returned(shell, ret);
 		set_last_status(shell, cmd, wstat);
 		if (cmd)
@@ -175,9 +175,12 @@ void	wait_all_children(t_shell *shell)
 
 void	pipex(t_shell *shell)
 {
-	// if (shell->cmds_count == 1)
-	// 	return ();
-	// else
+	if (shell->cmds_count == 1 && is_nofork(shell->cmds_arr[0]->cmd_name))
+	{
+		run_nofork(shell->cmds_arr[0], shell->env);
+		return ;
+	}
+	else
 		run_multi_commands(shell);
 	wait_all_children(shell);
 }

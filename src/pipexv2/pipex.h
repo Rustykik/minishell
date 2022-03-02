@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:44 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 19:28:47 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 14:35:18 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../signals/signals.h"
 # include "../shell/shell.h"
 # include "../env/env.h"
+# include "../builtin/builtin.h"
 
 void	pipex(t_shell *shell);
 
