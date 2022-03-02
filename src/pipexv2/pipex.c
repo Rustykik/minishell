@@ -77,7 +77,6 @@ void	exec_cmd(t_cmd *cmd, t_shell *shell)
 		full_cmd = find_path(ft_split(get_env(shell->env, "PATH"), ':'), cmd->cmd_name);
 	// if (check_not_dir(full_cmd)
 	//	 exit(126); // minishell: full cmd: Is a directory
-	ft_printf("full_cmd -[%s]\n", full_cmd);
 	if (access(full_cmd, F_OK) == -1)
 		exit (127); // recheck exit status command does not found
 	if (access(full_cmd, X_OK) == -1)

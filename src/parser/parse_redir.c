@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:42:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 22:26:15 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:08:36 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ int	parse_redir(t_cmd *cmd)
 	int		i;
 	char	quote;
 	char	*tmp;
-
 	i = 0;
-
 	while (cmd->input[i])
-	{
-		
+	{	
 		if (ft_strchr("\'\"", cmd->input[i]))
 		{
 			quote = cmd->input[i++];
@@ -45,15 +42,16 @@ int	parse_redir(t_cmd *cmd)
 		}
 		if (ft_strchr("<>", cmd->input[i]))
 		{
+			// printf("%s redir len %d %s\n", &cmd->input[i], get_redir_len(&cmd->input[i]), ft_substr(&cmd->input[i], 0, 1));
 			tmp = ft_substr(&cmd->input[i], 0, get_redir_len(&cmd->input[i]));
 			if (put_redir(cmd, tmp))
 				return (1);
 			ft_memset(cmd->input + i, '\6', get_redir_len(&cmd->input[i]));
 			i += get_redir_len(&cmd->input[i]);
 		}
-		else
+		else if (cmd->input[i])
 			++i;
 	}
-	ft_str_translate(cmd->input, '\6', '\0');
+	cmd->input = ft_str_translate(cmd->input, '\6', '\0');
 	return (0);
 }

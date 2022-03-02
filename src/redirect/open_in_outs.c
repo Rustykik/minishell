@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:20:26 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 21:56:03 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:54:33 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ int	here_doc(t_redir *new)
 			break ;
 		}
 		else
+		{
 			ft_putstr_fd(line, fd[1]);
+			write(fd[1], "\n", 1);
+		}
 		free(line);
 	}
-	close(fd[0]);
+	close(fd[1]); //??
+	// close(fd[0]);
 	return (0);
 }
 
@@ -54,6 +58,8 @@ int	open_file(t_redir *new)
 	if (new->type == IN_DOC)
 	{
 		// signal(SIGINT, here_doc_handler);
+		printf("opened file read %d\n", new->fd);
+
 		return (here_doc(new));
 	}
 	else if (new->type == IN)
@@ -61,6 +67,7 @@ int	open_file(t_redir *new)
 		new->fd = open(new->file, O_RDONLY);
 		if (new->fd == -1)
 			return (1); // strerror(errno) 
+	printf("opened file read %d\n", new->fd);
 		return (0);
 	}
 	else
