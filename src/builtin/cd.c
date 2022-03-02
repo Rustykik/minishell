@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:19:39 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 16:23:39 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 17:13:51 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	args_length(char **args)
 int	cmd_cd(char **args, t_env *env)
 {
 	char	*tmp;
+	char	tmp_wd[PATH_MAX];
 	int		status;
 
 	if (args_length(args) == 0)
@@ -37,8 +38,8 @@ int	cmd_cd(char **args, t_env *env)
 	tmp = get_env(env, "PWD");
 	if (set_env(env, "OLDPWD", tmp))
 		status = 1;
-	tmp = getcwd(tmp, PATH_MAX);
-	if (set_env(env, "PWD", tmp))
+	getcwd(tmp_wd, PATH_MAX);
+	if (set_env(env, "PWD", tmp_wd))
 		status = 1;
 	return (status);
 }
