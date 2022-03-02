@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:46:02 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	export_par(char *str, t_env *env, char **err_str)
+int	export_par(t_env *env, char *str, char **err_str)
 {
 	char	*par;
 	char	*val;
 
 	if (str[0] == '=')
-		return (err_ext_return_one(M_EXP, str, ERR_NOT_VAL));
-	if (strchr(str, '='))
+		return (1);
+	if (!strchr(str, '='))
 	{
 		par = ft_strtrim(str, " ");
-		val = ft_strdup(""); 
+		val = ft_strdup("");
 	}
 	else
 	{
@@ -31,19 +31,20 @@ int	export_par(char *str, t_env *env, char **err_str)
 	}
 	if (!*par && check_env_par(par))
 		*err_str = par;
-	return (set_env(par, val, env));
+	printf("EXP %s - %s \n", par, val);
+	return (set_env(env, par, val));
 }
 
 int	cmd_export(char **args, t_env *env)
 {
-	int	i;
-	char *err_msg;
-	
+	char	*err_msg;
+	int		i;
+
 	i = 0;
 	err_msg = 0;
 	while (args && args[i])
 	{
-		export_par(env, args[i], &err_msg);
+		printf("exp -%d \n", export_par(env, args[i], &err_msg));
 		i++;
 	}
 	if (err_msg)

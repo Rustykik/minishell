@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:25:18 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/25 15:17:05 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:44:11 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_args(char **args, int i)
 int	cmd_echo(char **args, t_env *env)
 {
 	(void)env;
-	if (ft_strcmp(args[0], "-n") == 0)
+	if (args[0] && ft_strncmp(args[0], "-n", 2) == 0)
 		print_args(args, 1);
 	else
 	{

@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   put_global.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 07:57:51 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 15:52:13 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:59:29 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void	check_flaq(char ch, int *flaq)
+{
+	if (*flaq == 0 && ch == '\"')
+		*flaq = 1;
+	else if (*flaq == 1 && ch == '\"')
+		*flaq = 0;
+}
 
 char	*get_name(char *cmd)
 {
@@ -36,13 +44,16 @@ int	find_len(t_env *env, char *str, t_list	**vals)
 {
 	int		i;
 	int		add_len;
+	int		flaq;
 	char	*name;
 
 	i = 0;
 	add_len = 0;
+	flaq = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		check_flaq(str[i], &flaq);
+		if (str[i] == '\'' && flaq == 0)
 		{
 			++i;
 			while (str[i] && str[i] != '\'')
@@ -68,22 +79,24 @@ void	move_res_str(char **res, char **str, char *name, char *val)
 	*res += ft_strlen(val);
 	*str += ft_strlen(name) + 1;
 	// printf("str %s + %ld\n", *str, ft_strlen(name) + 1);
-
 }
 
 char	*put_global(t_env *env, char *str)
 {
 	char	*ret;
 	char	*res;
+	int		flaq;
 	t_list	**vals;
 
 	vals = ft_zalloc(sizeof(t_list *));
 	res = ft_zalloc(find_len(env, str, vals));
 	// printf("put global\n len is %d\n", find_len(env, str, vals));
 	ret = res;
+	flaq = 0;
 	while (*str)
 	{
-		if (*str == '\'')
+		check_flaq(*str, &flaq);
+		if (*str == '\'' && flaq == 0)
 		{
 			*(res++) = *(str++);
 			while (*str && *str != '\'')
@@ -95,10 +108,6 @@ char	*put_global(t_env *env, char *str)
 			ft_strlcpy(res, (*vals)->data, ft_strlen((*vals)->data) + 1);
 			// ft_strlcpy(res, get_env(env, get_name(str)), ft_strlen(get_env(env, get_name(str))) + 1);
 			move_res_str(&res, &str, get_name(str), (*vals)->data);
-			// res += ft_strlen((*vals)->data);
-			// str += ft_strlen(get_name(str)) + 1;
-			// printf("res %s \n", res);
-			// printf("str %s \n", str);
 			*vals = (*vals)->next;
 		}
 		else if (*str)

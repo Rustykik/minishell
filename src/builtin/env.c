@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:31:19 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/25 13:12:44 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:39:46 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	cmd_env(char **args, t_env *env)
 {
-	size_t	i;
+	int	i;
 
 	if (!env || !env->envp)
 		return (err_return_one(M_ENV, ERR_NO_ENV));

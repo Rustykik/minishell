@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:45 by majacqua          #+#    #+#             */
-/*   Updated: 2022/02/28 03:47:37 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/02 15:41:59 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	copy_envp(t_env *env, char **envp)
 	int	i;
 
 	i = -1;
-	env->envp = ft_zalloc(sizeof(char **) * (env->len + 1)); 
+	env->envp = ft_zalloc(sizeof(char **) * (env->len + 1));
 	while (++i < env->len)
 		env->envp[i] = ft_strdup(envp[i]);
 }
