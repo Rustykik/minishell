@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:19:39 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 15:45:01 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:23:39 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	cmd_cd(char **args, t_env *env)
 	tmp = get_env(env, "PWD");
 	if (set_env(env, "OLDPWD", tmp))
 		status = 1;
-	tmp = getwd(tmp);
+	tmp = getcwd(tmp, PATH_MAX);
 	if (set_env(env, "PWD", tmp))
 		status = 1;
 	return (status);

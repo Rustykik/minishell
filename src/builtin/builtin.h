@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:26:01 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 15:30:27 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:25:42 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "../error/error.h"
 # include "../commands/commands.h"
 # include "../const.h"
+
+# include <limits.h>
 
 int	cmd_echo(char **args, t_env *env);
 int	cmd_cd(char **args, t_env *env);
