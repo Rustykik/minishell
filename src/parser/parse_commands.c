@@ -3,24 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:53:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 17:59:38 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:23:38 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	parse_commands(t_cmd *cmd)
+char	*unite_split(char **split)
 {
 	int		i;
-	char	*input;
-	char	quote;
+	int		len;
+	char	*str;
 
-	i = -1;
-	input = cmd->input;
-	while (input[++i])
+	i = 1;
+	len = ft_split_len(split);
+	if (len == 1)
+		return (ft_strdup(split[0]));
+	else if (len > 1)
+	{
+		str = ft_strdup(split[0]);
+		while (i < len)
+			str = ft_strjoin(str, split[i++]);
+		return (str);
+	}
+	return (ft_strdup(""));
+}
+
+char	*clean_quotes(char *input)
+{
+	char	**split;
+	char	quote;
+	int		i;
+
+	i = 0;
+	while (input[i])
 	{
 		if (input[i] == '\'' || input[i] == '\"')
 		{
@@ -28,24 +47,28 @@ int	parse_commands(t_cmd *cmd)
 			input[i++] = '\6';
 			while (input[i] && input[i] != quote)
 			{
-				input[i] = input[i] * !(input[i] == ' ') + '\r' * (input[i] == ' ');
+				input[i] = input[i] * !(input[i] == ' ') + \
+				'\r' * (input[i] == ' ');
 				++i;
 			}
 			if (input[i])
 				input[i] = '\6';
 		}
-		// input[i] = input[i] * !(input[i] == ' ') + '\6' * (input[i] == ' ');
+		if (input[i])
+			++i;
 	}
-	cmd->args = ft_split(input, '\6');
-	char *tmp = cmd->args[0];
-	i = 1;
-	while (cmd->args[i])
-	{
-		tmp = ft_strjoin(tmp, cmd->args[i]);
-		i++;
-	}
+	split = ft_split(input, '\6');
+	return (unite_split(split));
+}
+
+int	parse_commands(t_cmd *cmd)
+{
+	int		i;
+	char	*tmp;
+	char	quote;
+
 	i = -1;
-	// ТУТ НИЖНИЙ
+	tmp = clean_quotes(cmd->input);
 	while (tmp[++i])
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
@@ -58,11 +81,6 @@ int	parse_commands(t_cmd *cmd)
 	}
 	tmp = ft_str_translate(tmp, '\r', ' ');
 	cmd->args = ft_split(tmp, '\6');
-	// for (int i = 0; cmd->args[i]; i++)
-	// {
-	// 	cmd->args[i] = ft_strtrim(cmd->args[i], "\"");
-	// 	cmd->args[i] = ft_strtrim(cmd->args[i], "\'");
-	// }
 	cmd->cmd_name = cmd->args[0];
 	return (0);
 }

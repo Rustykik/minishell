@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 15:38:04 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 01:09:46 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	run_multi_commands(t_shell *shell)
 	{
 		shell->cmds_arr[i]->pid = fork();
 		if (shell->cmds_arr[i]->pid == -1)
-			ft_printf("minishell: fork:\n"); //strerror(errno)
+			perror("minishell: fork: "); //strerror(errno)
 		else if (shell->cmds_arr[i]->pid > 0)
 		{
 			signal(SIGINT, sig_int_proc);

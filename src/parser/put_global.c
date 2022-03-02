@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_global.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 07:57:51 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 15:59:29 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:29:53 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ char	*put_global(t_env *env, char *str)
 
 	vals = ft_zalloc(sizeof(t_list *));
 	res = ft_zalloc(find_len(env, str, vals));
-	// printf("put global\n len is %d\n", find_len(env, str, vals));
 	ret = res;
 	flaq = 0;
 	while (*str)
@@ -104,9 +103,7 @@ char	*put_global(t_env *env, char *str)
 		}
 		if (get_name(str))
 		{
-			// printf("found name  %s \n", get_env(env, get_name(str)));
 			ft_strlcpy(res, (*vals)->data, ft_strlen((*vals)->data) + 1);
-			// ft_strlcpy(res, get_env(env, get_name(str)), ft_strlen(get_env(env, get_name(str))) + 1);
 			move_res_str(&res, &str, get_name(str), (*vals)->data);
 			*vals = (*vals)->next;
 		}
