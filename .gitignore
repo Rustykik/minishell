@@ -3,3 +3,5 @@
 minishell
 .vscode
 .DS_Store
+test/*
+test
