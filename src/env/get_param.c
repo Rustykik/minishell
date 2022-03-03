@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:27:12 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 22:37:03 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:46:35 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_env(t_env *env, char *param)
 	param = ft_strjoin(param, "=");
 	while (env->envp[i])
 	{
-		if (strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+		if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=') - env->envp[i] + 1), param, ft_strlen(param)) == 0)
 		{
 			value = ft_strdup(ft_strchr(env->envp[i], '=') + 1);
 			return (value);

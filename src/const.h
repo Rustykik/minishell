@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 14:49:09 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:43:54 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@
 # define ERR_NOT_A_I		"not an identifier"
 # define ERR_NOT_VAL		"not a valid identifier"
 # define ERR_SYNTAX			"syntax error near unexpected token"
-
-/* ASCII */
-# define ASCII_ACK	6
+# define ERR_IS_DIREC		"is a directory"
+# define ERR_NO_COMM		"command not found"
 
 #endif

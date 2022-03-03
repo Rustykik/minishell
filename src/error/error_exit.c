@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:31:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 01:18:27 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/03 19:29:50 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@ int	err_ext_return_one(char *module, char *text, char *name)
 	return (1);
 }
 
-int	err_exit(char *module, char *text, char *name, int ex_status)
+int	err_exit(char *module, char *cmd, int ex_status)
+{
+	ft_putstr_fd(module, 2);
+	ft_putstr_fd(": ", 2);
+	perror(cmd);
+	exit(ex_status);
+}
+
+int	err_exit_txt(char *module, char *text, char *name, int status)
 {
 	ft_putstr_fd(module, 2);
 	ft_putstr_fd(": ", 2);
@@ -31,5 +39,5 @@ int	err_exit(char *module, char *text, char *name, int ex_status)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(name, 2);
 	ft_putstr_fd("\n", 2);
-	exit(ex_status);
+	exit(status);
 }

@@ -6,25 +6,26 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 14:08:30 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 18:43:23 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-void	new_envp_del(t_env *old_env, char **tmp, char *param)
+void	new_envp_del(t_env *env, char **tmp, char *param)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (j < old_env->len)
+	param = ft_strjoin(param, "=");
+	while (j < env->len)
 	{
-		if (ft_strncmp(old_env->envp[j], param, \
-			ft_strlen(param)) != 0)
+		if (ft_strncmp(ft_substr(env->envp[j], 0, ft_strchr(env->envp[j], '=') - env->envp[j] + 1), param, ft_strlen(param)) != 0)
+		
 		{
-			tmp[i] = old_env->envp[j];
+			tmp[i] = env->envp[j];
 			i++;
 			j++;
 		}
