@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 15:46:02 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 13:03:19 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,80 @@ int	export_par(t_env *env, char *str, char **err_str)
 	}
 	if (!*par && check_env_par(par))
 		*err_str = par;
-	printf("EXP %s - %s \n", par, val);
 	return (set_env(env, par, val));
+}
+
+char	*strdup_exp(const char *s1)
+{
+	char		*ret;
+	size_t		len;
+	size_t		i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	ret = ft_zalloc(sizeof(char) * (len + 1 + 2));
+	if (ret == NULL)
+		return (NULL);
+	ft_memcpy(ret, s1, len);
+	ret[len + 1] = '\"';
+	while (ret[i] && ret[i] != '=')
+		i++;
+	i++;
+	while (len > i)
+	{
+		ret[len] = ret[len - 1];
+		len--;
+	}
+	ret[len] = '\"';
+	return (ret);
+}
+
+void	sort_tmp_env(t_env *env)
+{
+	int		i;
+	int		j;
+	int		min;
+	char	*tmp;
+
+	i = 0;
+	while (i < env->len - 1)
+	{
+		min = i;
+		j = i + 1;
+		while (j < env->len)
+		{
+			if (ft_strncmp(env->envp[j], env->envp[min], \
+			ft_strlen(env->envp[min])) < 0)
+				min = j;
+			j++;
+		}
+		tmp = env->envp[i];
+		env->envp[i] = env->envp[min];
+		env->envp[min] = tmp;
+		i++;
+	}
+}
+
+void	show_export_list(t_env *env)
+{
+	int		i;
+	t_env	*tmp_env;
+
+	tmp_env = ft_zalloc(sizeof(t_env) * env->len);
+	tmp_env->len = env->len;
+	i = -1;
+	tmp_env->envp = ft_zalloc(sizeof(char **) * (tmp_env->len + 1));
+	while (++i < tmp_env->len)
+		tmp_env->envp[i] = strdup_exp(env->envp[i]);
+	sort_tmp_env(tmp_env);
+	i = 0;
+	while (i < env->len)
+	{
+		if (!ft_strnstr(tmp_env->envp[i], "_=", 2)
+			&& !ft_strnstr(tmp_env->envp[i], "?=", 2))
+			printf("declare -x %s\n", tmp_env->envp[i]);
+		i++;
+	}
 }
 
 int	cmd_export(char **args, t_env *env)
@@ -42,9 +114,11 @@ int	cmd_export(char **args, t_env *env)
 
 	i = 0;
 	err_msg = 0;
+	if (args && !args[0])
+		show_export_list(env);
 	while (args && args[i])
 	{
-		printf("exp -%d \n", export_par(env, args[i], &err_msg));
+		export_par(env, args[i], &err_msg);
 		i++;
 	}
 	if (err_msg)
