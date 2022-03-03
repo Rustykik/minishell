@@ -6,13 +6,13 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 14:54:24 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:06:24 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	export_par(t_env *env, char *str, char **err_str)
+int	export_par(t_env *env, char *str)
 {
 	char	*par;
 	char	*val;
@@ -29,8 +29,8 @@ int	export_par(t_env *env, char *str, char **err_str)
 		par = ft_substr(str, 0, ft_strchr(str, '=') - str);
 		val = ft_strtrim(ft_strchr(str, '=') + 1, " ");
 	}
-	if (!*err_str && check_env_par(par))
-		*err_str = par;
+	if (check_env_par(par))
+		return (err_ext_return_one(M_EXP, par, ERR_NOT_VAL));
 	return (set_env(env, par, val));
 }
 
@@ -56,6 +56,7 @@ char	*strdup_exp(const char *s1)
 		len--;
 	}
 	ret[len] = '\"';
+	check_empty_exp(ret);
 	return (ret);
 }
 
@@ -109,19 +110,15 @@ void	show_export_list(t_env *env)
 
 int	cmd_export(char **args, t_env *env)
 {
-	char	*err_msg;
 	int		i;
 
 	i = 0;
-	err_msg = 0;
 	if (args && !args[0])
 		show_export_list(env);
 	while (args && args[i])
 	{
-		export_par(env, args[i], &err_msg);
+		export_par(env, args[i]);
 		i++;
 	}
-	if (err_msg)
-		return (err_ext_return_one(M_EXP, ERR_NOT_A_I, err_msg));
 	return (0);
 }
