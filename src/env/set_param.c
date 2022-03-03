@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 01:49:16 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:46:43 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	env_par_exist(t_env *env, char *param)
 	int	i;
 
 	i = 0;
+	param = ft_strjoin(param, "=");
 	while (env->envp[i] && i < env->len)
 	{
-		if (ft_strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+		if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=') - env->envp[i] + 1), param, ft_strlen(param)) == 0)
 			return (1);
 		i++;
 	}
@@ -46,13 +47,13 @@ void	rewrite_env_param(t_env *env, char *param, char *join)
 	int	i;
 
 	i = 0;
+	param = ft_strjoin(param, "=");
 	while (i < env->len)
 	{
 		if (env->envp[i])
 		{
-			if (ft_strncmp(env->envp[i], param, ft_strlen(param)) == 0)
+			if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=') - env->envp[i] + 1), param, ft_strlen(param)) == 0)
 			{
-				write(2, "rewrite\n", ft_strlen("rewrite\n"));
 				env->envp[i] = join;
 			}
 		}
@@ -70,12 +71,10 @@ int	set_env(t_env *env, char *param, char *val)
 	join = ft_multi_join(3, param, "=", val);
 	if (env_par_exist(env, param))
 	{
-		write(2, "Exists\n", ft_strlen("Exists\n"));
 		rewrite_env_param(env, param, join);
 	}
 	else
 	{
-		write(2, "not Exists\n", ft_strlen("not Exists\n"));
 		tmp = env->envp;
 		new_envp_set(env, join, tmp);
 		env->len++;

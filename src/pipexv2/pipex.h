@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:44 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 00:52:21 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/03 19:07:10 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <dirent.h>
+# include <errno.h>
 
 # include "../commands/commands.h"
 # include "../libftv2/libftv2.h"

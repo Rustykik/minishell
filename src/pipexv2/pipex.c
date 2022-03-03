@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 01:09:46 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/03 20:05:40 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*find_path(char **paths, char *cmd)
 	char	*name;
 
 	i = -1;
-	if (!access(cmd, F_OK))
-		return (cmd);
 	while (paths[++i])
 	{
 		if (paths[i][ft_strlen(paths[i]) - 1] != '/')
@@ -29,6 +27,7 @@ char	*find_path(char **paths, char *cmd)
 		if (!access(name, F_OK))
 			return (name);
 	}
+	err_exit_txt(M_SH, cmd, ERR_NO_COMM, 127);
 	return (cmd);
 }
 
@@ -50,7 +49,7 @@ char	*add_pwd(char *pwd, char *cmd)
 		else
 			return (ft_strjoin(pwd, cmd + 1));
 	}
-	return (NULL); // will newer get here 
+	return (NULL);
 }
 
 void	close_all(t_shell *shell)
@@ -67,31 +66,47 @@ void	close_all(t_shell *shell)
 	}
 }
 
+int	check_not_dir(char *full_cmd)
+{
+	DIR	*dir;
+
+	dir = opendir(full_cmd);
+	if (dir)
+	{
+		closedir(dir);
+		return (1);
+	}
+	return (0);
+}
+
 void	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	char	*full_cmd;
 
 	if (cmd->cmd_name[0] == '.')
-		full_cmd = add_pwd(get_env(shell->env, "PWD"), cmd->cmd_name); // maybe join pwd
+		full_cmd = add_pwd(get_env(shell->env, "PWD"), cmd->cmd_name);
 	else
 		full_cmd = find_path(ft_split(get_env(shell->env, "PATH"), ':'), cmd->cmd_name);
-	// if (check_not_dir(full_cmd)
-	//	 exit(126); // minishell: full cmd: Is a directory
+	if (check_not_dir(full_cmd))
+		err_exit_txt(M_SH, cmd->cmd_name, ERR_IS_DIREC, 126);
 	if (access(full_cmd, F_OK) == -1)
-		exit (127); // recheck exit status command does not found
+		err_exit_txt(M_SH, cmd->cmd_name, ERR_NO_COMM, 127);	
 	if (access(full_cmd, X_OK) == -1)
-		exit (126); // recheck exit status command exists but not executable
+		err_exit(M_SH, cmd->cmd_name, 126);
 	execve(full_cmd, cmd->args, shell->env->envp);
-	exit (127); // recheck status return strerror erno 
+	exit (127); 
 }
 
 void	pre_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
+	int err;
+	
 	signal(SIGQUIT, handler_child_quit); // write coredump and exit with correct exit status;
 	if (dup2(cmd->fd[0], 0) == -1 || dup2(cmd->fd[1], 1) == -1)
 	{
+		err = errno;
 		close_all(shell);
-		exit(1); // what status? what message?
+		err_exit_txt(M_SH, "dup2", strerror(err), 1); // ??? HZ exit status
 	}
 	close_all(shell);
 	if (cmd->cmd_name)
@@ -115,7 +130,7 @@ void	run_multi_commands(t_shell *shell)
 	{
 		shell->cmds_arr[i]->pid = fork();
 		if (shell->cmds_arr[i]->pid == -1)
-			perror("minishell: fork: "); //strerror(errno)
+			perror("minishell: fork"); //strerror(errno)
 		else if (shell->cmds_arr[i]->pid > 0)
 		{
 			signal(SIGINT, sig_int_proc);
