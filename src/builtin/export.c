@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:52:33 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 13:03:19 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:54:24 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	export_par(t_env *env, char *str, char **err_str)
 	char	*val;
 
 	if (str[0] == '=')
-		return (1);
+		return (err_ext_return_one(M_EXP, "`=\'", ERR_NOT_VAL));
 	if (!strchr(str, '='))
 	{
 		par = ft_strtrim(str, " ");
@@ -29,7 +29,7 @@ int	export_par(t_env *env, char *str, char **err_str)
 		par = ft_substr(str, 0, ft_strchr(str, '=') - str);
 		val = ft_strtrim(ft_strchr(str, '=') + 1, " ");
 	}
-	if (!*par && check_env_par(par))
+	if (!*err_str && check_env_par(par))
 		*err_str = par;
 	return (set_env(env, par, val));
 }
