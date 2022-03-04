@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:23:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 18:43:23 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:42:05 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	new_envp_del(t_env *env, char **tmp, char *param)
 	param = ft_strjoin(param, "=");
 	while (j < env->len)
 	{
-		if (ft_strncmp(ft_substr(env->envp[j], 0, ft_strchr(env->envp[j], '=') - env->envp[j] + 1), param, ft_strlen(param)) != 0)
-		
+		if (ft_strncmp(ft_substr(env->envp[j], 0, ft_strchr(env->envp[j], '=')
+					- env->envp[j] + 1), param, ft_strlen(param)) != 0)
 		{
 			tmp[i] = env->envp[j];
 			i++;
