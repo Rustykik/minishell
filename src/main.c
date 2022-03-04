@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 00:59:16 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 17:20:37 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ void	execute_input(t_shell *shell, char *read)
 	char	**parsed;
 
 	str = ft_strdup(read);
-	// check_input(str);
 	str = cut_spaces(str);
-	// printf("%s\n", str);
-
 	str = put_global(shell->env, str);
-	// printf("%s\n", str);
 	parsed = parse_pipes(str);
 	if (!parsed)
 		return ;
@@ -53,8 +49,8 @@ int	main(int argc, char **argv, char **envp)
 	g_heap.shell = (void *)&shell;
 	g_heap.count = 0;
 	if (init_shell(&shell, envp))
-		return (1); // ?
-	while (!shell.exit)
+		return (1); // ???
+	while (shell.exit == 0)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sig_int_empty);

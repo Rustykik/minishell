@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 12:17:49 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/03 18:46:43 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:43:24 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	env_par_exist(t_env *env, char *param)
 	param = ft_strjoin(param, "=");
 	while (env->envp[i] && i < env->len)
 	{
-		if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=') - env->envp[i] + 1), param, ft_strlen(param)) == 0)
+		if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=')
+					- env->envp[i] + 1), param, ft_strlen(param)) == 0)
 			return (1);
 		i++;
 	}
@@ -52,7 +53,9 @@ void	rewrite_env_param(t_env *env, char *param, char *join)
 	{
 		if (env->envp[i])
 		{
-			if (ft_strncmp(ft_substr(env->envp[i], 0, ft_strchr(env->envp[i], '=') - env->envp[i] + 1), param, ft_strlen(param)) == 0)
+			if (ft_strncmp(ft_substr(env->envp[i], 0, \
+				ft_strchr(env->envp[i], '=') - env->envp[i] + 1), \
+				param, ft_strlen(param)) == 0)
 			{
 				env->envp[i] = join;
 			}

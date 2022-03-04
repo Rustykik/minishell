@@ -3,23 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   put_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:18:06 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 15:48:23 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 15:52:57 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
+int	redir_error(char *str)
+{
+	int		i;
+	char	*str_err;
+
+	i = 0;
+	if (str && !str[0])
+		return (err_return_one(M_SH, \
+			"syntax error near unexpected token `newline\'"));
+	else
+	{
+		str_err = ft_zalloc(3);
+		str_err[0] = str[0];
+		if ((str[1] == '>' || str[1] == '<')
+			&& (str[0] != '>' || str[1] != '<'))
+			str_err[1] = str[1];
+		return (err_return_one(M_SH, ft_multi_join(3, \
+			"syntax error near unexpected token `", str_err, "\'")));
+	}
+}
+
 int	check_redir(char *str)
 {
-	if (ft_strchr("<>", *str) && ft_strlen(str) == 1){
-		// printf("did not exit\n");
-		return (0);
+	if (ft_strchr("<>", *str) && ft_strlen(str) == 1)
+	{
+		return (err_return_one(M_SH, \
+			"syntax error near unexpected token `newline\'"));
 	}
 	if (str[0] == '>' && str[1] == '<')
-		return (1); // `<'
+		return (redir_error(str + 1));
 	if (!ft_strchr("<>", *str))
 		return (1);
 	if (ft_strchr("<>", *str))
@@ -29,7 +51,9 @@ int	check_redir(char *str)
 	while (*str == ' ')
 		str++;
 	if (ft_strchr("<>", *str))
-		return (1);
+	{
+		return (redir_error(str));
+	}
 	return (0);
 }
 
@@ -38,7 +62,7 @@ t_redir	*create_redir(char *str)
 	t_redir	*new;
 
 	if (check_redir(str))
-		return (NULL); //  bash: syntax error wrong redirects
+		return (NULL);
 	new = ft_zalloc(sizeof(t_redir));
 	if (str[0] == '<' && str[1] == '<')
 		new->type = IN_DOC;
@@ -48,17 +72,14 @@ t_redir	*create_redir(char *str)
 		new->type = IN;
 	else if (str[0] == '>')
 		new->type = OUT;
-	// printf("%d\n", new->type);
 	while (*str && ft_strchr("<> ", *str))
 		++str;
 	new->file = ft_strdup(str);
-	// printf("%s\n", new->file);// < file is null
 	if (!new->file || open_file(new))
 	{
 		close(new->fd);
 		return (NULL);
 	}
-	// printf("did not exit\n");
 	return (new);
 }
 
@@ -82,9 +103,7 @@ int	put_redir(t_cmd *cmd, char *str)
 		close(cmd->fd[in_out]);
 	if (*cur_redir)
 		close((*cur_redir)->fd);
-	// printf("%p %p\n", cur_redir, red);
 	*cur_redir = red;
-	// printf("%p %p\n", cur_redir, red);
 	if (cmd->left)
 		cmd->fd[0] = cmd->left->fd;
 	if (cmd->right)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zalloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
+/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:54:48 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 18:53:22 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 15:59:28 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_heap	t_heap;
 
-struct	s_heap
+struct					s_heap
 {
 	void	**mem;
 	void	**tmp_mem;
@@ -33,6 +33,6 @@ void	ft_free(void);
 void	ftmp_free(void);
 void	alloc_error(int size);
 
-t_heap	g_heap;
+t_heap					g_heap;
 
 #endif
