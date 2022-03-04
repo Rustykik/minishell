@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:16 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 15:38:04 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 02:00:57 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void	wait_all_children(t_shell *shell)
 	wstat = 0;
 	while (++i < shell->cmds_count)
 	{
-		ret = waitpid(0, &wstat, 0); 
+		ret = waitpid(0, &wstat, 0);
 		cmd = who_returned(shell, ret);
 		set_last_status(shell, cmd, wstat);
 		if (cmd)

@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:18:06 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/02 15:48:23 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 03:07:29 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int	put_redir(t_cmd *cmd, char *str)
 		cmd->fd[0] = cmd->left->fd;
 	if (cmd->right)
 		cmd->fd[1] = cmd->right->fd;
-	printf("%p %p\n", cmd->left, cmd->right);
 	return (0);
 }

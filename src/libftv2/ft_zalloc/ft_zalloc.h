@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:54:48 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 18:53:22 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 03:04:32 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ struct	s_heap
 	void	**tmp_mem;
 	size_t	count;
 	size_t	tmp_count;
-	void	*shell;	
+	void	*shell;
+
+	int		pid_c;
+	int		input_stat;
 };
 
 void	*ft_zalloc(size_t size);

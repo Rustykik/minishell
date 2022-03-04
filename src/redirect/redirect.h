@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:36:08 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/26 22:08:14 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 02:42:35 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 // # include <unistd.h>
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 # include <readline/readline.h>
 # include "../libftv2/libftv2.h"
