@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:52:38 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 18:26:41 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:38:49 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@ int	ft_isstrdigit(char *str)
 {
 	if (!str)
 		return (1);
+	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\v'\
+	|| *str == '\f' || *str == '\r')
+		++str;
+	if (*str == '+' || *str == '-')
+		++str;
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
 			return (0);
-		str++;
+		if (*str)
+			++str;
 	}
 	return (1);
 }
@@ -31,25 +37,25 @@ void	check_exit_str(t_shell *shell)
 	char	**sp;
 
 	i = 0;
-	// if (shell->cmds != 1)
-	// 	return ;
+	if (shell->cmds_count != 1)
+		return ;
 	sp = ft_split(shell->cmds_arr[0]->input, ' ');
-	while (sp[i])
+	while (sp && sp[i])
 		i++;
-	if (!ft_strncmp(sp[0], "exit", ft_strlen("exit")))
+	if (sp && sp[0] && !ft_strncmp(sp[0], "exit", ft_strlen("exit")))
 	{
 		shell->exit = 1;
 		if (i > 1)
 			shell->exit_status = ft_atoi(sp[1]);
 		if (i > 1 && !ft_isstrdigit(sp[1]))
 		{
-			err_return_one("Exit", ERR_NE_ARGS);
+			err_return_one(M_EXIT, " numeric argument required");
 			shell->exit_status = 255;
 		}
 		else if (i > 2)
 		{
 			shell->exit = 0;
-			err_return_one("Exit", ERR_MN_ARGS);
+			err_return_one(M_EXIT, ERR_MN_ARGS);
 		}
 	}
 }
@@ -74,7 +80,7 @@ int	nord_stream(t_shell *shell)
 	while (++i < shell->cmds_count)
 	{
 		if (pipe(fd) < 0)
-			return (1); // pipe error
+			return (err_ext_return_one(M_SH, "pipe", strerror(errno)));
 		shell->cmds_arr[i]->fd[0] = fd[0];
 		shell->cmds_arr[i - 1]->fd[1] = fd[1];
 	}
@@ -89,7 +95,6 @@ int	init_commands(t_shell *shell, char **parsed)
 	i = -1;
 	while (++i < shell->cmds_count)
 		shell->cmds_arr[i] = init_cmd(parsed[i]);
-	check_exit_str(shell);
 	if (nord_stream(shell) || put_redir_cmds(shell))
 		return (1);
 	return (0);

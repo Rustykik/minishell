@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:18:06 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 15:52:57 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:06:14 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ int	put_redir(t_cmd *cmd, char *str)
 		cmd->fd[0] = cmd->left->fd;
 	if (cmd->right)
 		cmd->fd[1] = cmd->right->fd;
-	printf("%p %p\n", cmd->left, cmd->right);
 	return (0);
 }
