@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:36:08 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 02:42:35 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 03:28:02 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <signal.h>
 
 # include <readline/readline.h>
 # include "../libftv2/libftv2.h"
+// # include "../signals/signals.h"
 // # include "../commands/commands.h"
 // # include "../shell/shell.h"
 

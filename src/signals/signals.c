@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 02:25:41 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 21:56:28 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 03:26:57 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,6 @@ void	handler_child_quit(int signum)
 		exit(131);
 }
 
-// void	here_doc_handler(int signum)
-// {
-// 	t_shell	*shell;
-
-// 	shell = (t_shell *)g_heap.shell;
-// 	if (signum == SIGINT)
-// 	{
-// 		write(2, "\n", 1);
-// 		rl_on_new_line();
-// 		rl_replace_line("", 0);
-// 		rl_redisplay();
-// 	}
-// }
-
 void	sig_int_empty(int signum)
 {
 	if (signum == SIGINT)
@@ -85,6 +71,7 @@ void	sig_int_proc(int signum)
 	{
 		kill(shell->pid_c, SIGINT);
 		write(1, "\n", 1);
+		signal(SIGINT, SIG_IGN);
 	}
 	if (signum == SIGQUIT)
 	{

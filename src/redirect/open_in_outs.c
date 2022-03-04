@@ -6,11 +6,21 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:20:26 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 03:11:20 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 03:37:33 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "redirect.h"
+
+void	here_doc_handler(int signum)
+{
+	if (signum == SIGINT)
+	{
+		kill(g_heap.pid_c, SIGINT);
+		write(2, "\n", 1);
+		signal(SIGINT, SIG_IGN);
+	}
+}
 
 int	ret_status_here_doc(int wstat)
 {
@@ -21,40 +31,25 @@ int	ret_status_here_doc(int wstat)
 	return (1);
 }
 
-int	wait_doc(t_redir *new)
+int	wait_doc(void)
 {
 	int		wstat;
-	int		fd[2];
 	// int		ret;
 
 	wstat = 0;
-	if (pipe(fd) == -1)
-	{
-		waitpid(g_heap.pid_c, &wstat, WNOHANG);
-		return (1); // pipex eror minishell: (strerror erno)
-	}
-	new->fd = fd[0];
-	dup2(fd[0], 0);
-	// close(fd[0]);
-	close(fd[1]);
-	waitpid(g_heap.pid_c, &wstat, 0);
+	waitpid(0, &wstat, 0);
 	g_heap.input_stat = ret_status_here_doc(wstat);
 	return (1);
 }
 
 int	here_doc(t_redir *new)
 {
-	int		fd[2];
 	char	*line;
 
-	if (pipe(fd) == -1)
-		return (1); // pipex eror minishell: (strerror erno)
-	dup2(fd[1], 1);
-	close(fd[1]);
-	close(fd[0]);
 	while (1)
 	{
-		line = readline(">");
+		write(2, "> ", 2);
+		line = ft_get_next_line(0);
 		if (!line)
 			return (0); //minishell: here-document delimited by end-of-file (wanted `lim')
 		if (!ft_strncmp(line, new->file, ft_strlen(new->file)))
@@ -87,15 +82,31 @@ int	out_file(t_redir *new)
 
 int	open_file(t_redir *new)
 {
+	int	fd[2];
+
 	if (new->type == IN_DOC)
 	{
-		// signal(SIGINT, here_doc_handler);
+		signal(SIGINT, here_doc_handler);
+		if (pipe(fd) == -1)
+			return (1); // pipex eror minishell: (strerror erno)
 		g_heap.pid_c = fork();
 		if (g_heap.pid_c < 0)
 			return (1); // fork error
 		else if (g_heap.pid_c == 0)
+		{
+			dup2(fd[1], 1);
+			dup2(fd[0], 0);
+			close(fd[1]);
+			close(fd[0]);
 			here_doc(new);
-		return (wait_doc(new));
+		}
+		else if (g_heap.pid_c > 0)
+		{
+			dup2(fd[0], 0);
+			new->fd = fd[0];
+			close(fd[1]);
+		}
+		return (wait_doc());
 	}
 	else if (new->type == IN)
 	{
