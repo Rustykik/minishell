@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 13:22:00 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/22 16:13:46 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 05:44:38 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*clean_spaces(char *input)
 
 	j = 0;
 	i = 0;
-	// printf("%s\n%ld\n", input, ft_strlen(input) + 1);
 	clean = ft_zalloc(ft_strlen(input) + 2);
 	while (input[i])
 	{
@@ -46,9 +45,6 @@ char	*cut_spaces(char *input)
 {
 	char	*ret;
 
-	// ret = ft_zalloc(ft_strlen(input) + 1);
-	// input = ft_strtrim(input, " \t");
-	// printf("%s\n%ld\n", input, ft_strlen(input) + 1);
 	ret = clean_spaces(input);
 	return (ret);
 }

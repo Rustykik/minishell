@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 07:47:13 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 02:56:14 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 04:35:52 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,11 @@ char	**parse_pipes(char *input)
 
 	input = replace_pipes(input);
 	if (!input)
-		return (NULL); // unclosed quotes 
-	// input = ft_strtrim(input, " "); // may be delete
-	if (!input)
-		return (NULL);
+		return (err_return_null(M_SH, "according to subject unclosed quotes are not\
+ accepted"));
 	ret = ft_split(check_pipe(input), '\6');
 	if (!ret)
-		return (NULL); //bash: syntax error near unexpected token `|'
+		return (err_return_null(M_SH, " syntax error near unexpected\
+token `|'"));
 	return (ret);
 }

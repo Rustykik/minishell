@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:42:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 00:47:59 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 05:43:34 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,13 @@ int	get_redir_len(char *str)
 int	parse_redir(t_cmd *cmd)
 {
 	int		i;
-	char	quote;
 	char	*tmp;
 
 	i = 0;
 	while (cmd->input[i])
 	{	
 		if (ft_strchr("\'\"", cmd->input[i]))
-		{
-			quote = cmd->input[i++];
-			while (cmd->input[i] && cmd->input[i] != quote)
-				++i;
-		}
+			skip_quotes_int(cmd->input, &i);
 		if (ft_strchr("<>", cmd->input[i]))
 		{
 			tmp = ft_substr(&cmd->input[i], 0, get_redir_len(&cmd->input[i]));

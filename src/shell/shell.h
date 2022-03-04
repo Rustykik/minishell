@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/28 16:40:05 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 05:53:29 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ struct s_shell
 	int		cmds_count;
 	t_cmd	**cmds_arr;
 	int		cmds;
-	int		exit; //???
+	int		exit;
 	int		exit_status;
 };
 

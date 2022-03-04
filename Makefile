@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+         #
+#    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/03/02 14:36:33 by majacqua         ###   ########.fr        #
+#    Updated: 2022/03/04 05:21:08 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ PARS_SRCS	= 	parser/cut_spaces \
 				parser/put_global \
 				parser/parse_pipes \
 				parser/parse_redir \
-				parser/parse_commands
+				parser/parse_commands \
+				parser/skip_quotes
 
 BUIL_SRCS	=	builtin/builtin \
 				builtin/cd \
@@ -45,7 +46,9 @@ CMDS_SRCS	= 	commands/put_redir
 SHELL_SRCS	= 	shell/init_commands \
 				shell/put_redir_cmds
 
-PIPEX_SRCS	=	pipexv2/pipex
+PIPEX_SRCS	=	pipexv2/pipex \
+				pipexv2/execute \
+				pipexv2/run_commands
 
 SIG_SRCS	=	signals/signals
 

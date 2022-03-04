@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:53:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 00:23:38 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 05:32:24 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	parse_commands(t_cmd *cmd)
 	char	*tmp;
 	char	quote;
 
-	i = -1;
+	i = 0;
 	tmp = clean_quotes(cmd->input);
-	while (tmp[++i])
+	while (tmp[i])
 	{
 		if (tmp[i] == '\'' || tmp[i] == '\"')
 		{
@@ -78,6 +78,8 @@ int	parse_commands(t_cmd *cmd)
 				++i;
 		}
 		tmp[i] = tmp[i] * !(tmp[i] == ' ') + '\6' * (tmp[i] == ' ');
+		if (tmp[i])
+			++i;
 	}
 	tmp = ft_str_translate(tmp, '\r', ' ');
 	cmd->args = ft_split(tmp, '\6');

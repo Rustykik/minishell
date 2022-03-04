@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:34:44 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 19:07:10 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 04:20:24 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@
 # include "../env/env.h"
 
 void	pipex(t_shell *shell);
+void	exec_cmd(t_cmd *cmd, t_shell *shell);
+void	close_all(t_shell *shell);
+void	run_multi_commands(t_shell *shell);
 
 #endif

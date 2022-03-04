@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 07:57:51 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 00:29:53 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/04 05:34:43 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ int	find_len(t_env *env, char *str, t_list	**vals)
 	{
 		check_flaq(str[i], &flaq);
 		if (str[i] == '\'' && flaq == 0)
-		{
-			++i;
-			while (str[i] && str[i] != '\'')
-				++i;
-		}
+			skip_sing_quote(str, &i);
 		name = get_name(&str[i]);
 		if (name)
 		{
@@ -74,11 +70,8 @@ int	find_len(t_env *env, char *str, t_list	**vals)
 
 void	move_res_str(char **res, char **str, char *name, char *val)
 {
-	// printf("res %s + %ld\n", *res, ft_strlen(val));
-	// printf("str %s + %ld\n", *str, ft_strlen(name) + 1);
 	*res += ft_strlen(val);
 	*str += ft_strlen(name) + 1;
-	// printf("str %s + %ld\n", *str, ft_strlen(name) + 1);
 }
 
 char	*put_global(t_env *env, char *str)
@@ -96,11 +89,7 @@ char	*put_global(t_env *env, char *str)
 	{
 		check_flaq(*str, &flaq);
 		if (*str == '\'' && flaq == 0)
-		{
-			*(res++) = *(str++);
-			while (*str && *str != '\'')
-				*(res++) = *(str++);
-		}
+			skip_quotes_str(&str, &res);
 		if (get_name(str))
 		{
 			ft_strlcpy(res, (*vals)->data, ft_strlen((*vals)->data) + 1);
