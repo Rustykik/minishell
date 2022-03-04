@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/03 19:43:54 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:54:41 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define ERR_INV_PAR		"invalid parameter name"
 # define ERR_NOT_A_I		"not an identifier"
 # define ERR_NOT_VAL		"not a valid identifier"
-# define ERR_SYNTAX			"syntax error near unexpected token"
 # define ERR_IS_DIREC		"is a directory"
 # define ERR_NO_COMM		"command not found"
 
