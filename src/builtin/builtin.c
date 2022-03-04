@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 14:00:36 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/02 15:40:27 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:34:05 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	run_cmd(t_cmd *cmd, t_env *env)
 
 int	is_nofork(char *cmd)
 {
+	if (!cmd)
+		return (1);
 	if (ft_strncmp(cmd, "cd", ft_strlen("cd")) == 0)
 		return (1);
 	else if (ft_strncmp(cmd, "unset", ft_strlen("unset")) == 0)
@@ -65,6 +67,8 @@ int	run_nofork(t_cmd *cmd, t_env *env)
 {
 	int	status;
 
+	if (!cmd->cmd_name)
+		return (1);
 	status = 0;
 	if (ft_strncmp(cmd->cmd_name, "cd", ft_strlen("cd")) == 0)
 		status = cmd_cd(cmd->args + 1, env);

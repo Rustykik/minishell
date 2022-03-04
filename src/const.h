@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 07:38:49 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 15:54:41 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:24:16 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # define M_SH	"ba$h"
 # define M_ENV	"environment"
 # define M_PAR	"parser"
-# define M_CD	"cd"
-# define M_PWD	"pwd"
+# define M_CD	"ba$h: cd"
+# define M_PWD	"ba$h: pwd"
+# define M_EXIT	"ba$h: exit"
 # define M_UNS	"unset"
 # define M_EXP	"export"
 

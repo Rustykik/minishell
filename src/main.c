@@ -6,7 +6,7 @@
 /*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:31:36 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 17:20:37 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:11:08 by majacqua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	execute_input(t_shell *shell, char *read)
 		return ;
 	shell->cmds_count = ft_split_len(parsed);
 	if (!init_commands(shell, parsed))
+	{
+		check_exit_str(shell);
 		pipex(shell);
+	}
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -49,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 	g_heap.shell = (void *)&shell;
 	g_heap.count = 0;
 	if (init_shell(&shell, envp))
-		return (1); // ???
+		return (1);
 	while (shell.exit == 0)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -62,6 +65,8 @@ int	main(int argc, char **argv, char **envp)
 		execute_input(&shell, read);
 		free(read);
 	}
+	if (shell.exit != 0)
+		ft_printf("exit\n");
 	ft_free();
-	return (shell.exit_status);
+	return ((int) shell.exit_status);
 }
