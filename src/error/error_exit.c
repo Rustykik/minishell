@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:31:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/04 04:26:29 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/05 18:33:18 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	err_exit(char *module, char *cmd, int ex_status)
 	ft_putstr_fd(module, 2);
 	ft_putstr_fd(": ", 2);
 	perror(cmd);
+	ft_free();
 	exit(ex_status);
 }
 
@@ -39,5 +40,19 @@ int	err_exit_txt(char *module, char *text, char *name, int status)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(name, 2);
 	ft_putstr_fd("\n", 2);
+	ft_free();
 	exit(status);
+}
+
+int	here_doc_warning(char *lim)
+{
+	ft_putstr_fd(" ", 2);
+	ft_putstr_fd(M_SH, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("warning: here-document at line\
+36 delimited by end-of-file (wanted `", 2);
+	ft_putstr_fd(lim, 2);
+	ft_putstr_fd("')", 2);
+	ft_putstr_fd("\n", 2);
+	return (0);
 }

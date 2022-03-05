@@ -6,13 +6,28 @@
 #    By: rusty <rusty@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 11:36:13 by rusty             #+#    #+#              #
-#    Updated: 2022/03/04 05:21:08 by rusty            ###   ########.fr        #
+#    Updated: 2022/03/05 18:47:18 by rusty            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-COMP = gcc -g -Wall -Werror -Wextra -fsanitize=address
+COMP = gcc -Wall -Werror -Wextra
+
+MINISH_INC = 	./src/env/env.h \
+				./src/commands/commands.h \
+				./src/redirect/redirect.h \
+				./src/libftv2/ft_zalloc/ft_zalloc.h \
+				./src/libftv2/libftv2.h \
+				./src/libftv2/libft/libft.h \
+				./src/signals/signals.h \
+				./src/shell/shell.h \
+				./src/parser/parser.h \
+				./src/minishell.h \
+				./src/builtin/builtin.h \
+				./src/pipexv2/pipex.h \
+				./src/error/error.h \
+				./src/const.h
 
 LIBFT = ./src/libftv2/libft.a
 
@@ -44,7 +59,8 @@ REDIR_SRCS	= 	redirect/open_in_outs
 CMDS_SRCS	= 	commands/put_redir
 
 SHELL_SRCS	= 	shell/init_commands \
-				shell/put_redir_cmds
+				shell/put_redir_cmds \
+				shell/less_mll
 
 PIPEX_SRCS	=	pipexv2/pipex \
 				pipexv2/execute \
@@ -62,10 +78,10 @@ MAIN_OBJ = $(addprefix ./src/, $(addsuffix .o, $(MAIN_SRCS)))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MAIN_OBJ)
+$(NAME): $(LIBFT) $(MAIN_OBJ) $(MINISH_INC)
 	$(COMP) $(MAIN_OBJ) $(LIBFT) -o $@ -lreadline
 
-%.o: %.c Makefile $(LIBFT)
+%.o: %.c Makefile $(MINISH_INC)
 	$(COMP) -c $< -o $@ -I./src/env/ -I./src/libftv2/libft/ 
 
 $(LIBFT): ./src/libftv2/ft_zalloc/*.c ./src/libftv2/ft_zalloc/*.h ./src/libftv2/libft/*.c ./src/libftv2/libft/*.h ./src/libftv2/Makefile ./src/libftv2/libftv2.h

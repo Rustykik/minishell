@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 04:13:54 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 04:14:36 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/05 18:34:14 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	exec_cmd(t_cmd *cmd, t_shell *shell)
 	if (access(full_cmd, X_OK) == -1)
 		err_exit(M_SH, cmd->cmd_name, 126);
 	execve(full_cmd, cmd->args, shell->env->envp);
+	ft_free();
 	exit (127);
 }

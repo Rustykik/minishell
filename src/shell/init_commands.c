@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:52:38 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 19:38:49 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:25:32 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_exit_str(t_shell *shell)
 		shell->exit = 1;
 		if (i > 1)
 			shell->exit_status = ft_atoi(sp[1]);
-		if (i > 1 && !ft_isstrdigit(sp[1]))
+		if (i > 1 && (!ft_isstrdigit(sp[1]) || less_mll(sp[1])))
 		{
 			err_return_one(M_EXIT, " numeric argument required");
 			shell->exit_status = 255;

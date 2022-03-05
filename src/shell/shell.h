@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:19:05 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 19:26:07 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:11:23 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHELL_H
 
 # include <errno.h>
+# include <limits.h>
 # include "../commands/commands.h"
 # include "../parser/parser.h"
 # include "../redirect/redirect.h"
@@ -36,5 +37,6 @@ struct s_shell
 int		put_redir_cmds(t_shell *shell);
 int		init_commands(t_shell *shell, char **parsed);
 void	check_exit_str(t_shell *shell);
+int		less_mll(const char *str);
 
 #endif

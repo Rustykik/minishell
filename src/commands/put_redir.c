@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majacqua <majacqua@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:18:06 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/04 19:06:14 by majacqua         ###   ########.fr       */
+/*   Updated: 2022/03/05 16:25:17 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	redir_error(char *str)
 {
-	int		i;
 	char	*str_err;
 
-	i = 0;
 	if (str && !str[0])
 		return (err_return_one(M_SH, \
 			"syntax error near unexpected token `newline\'"));
