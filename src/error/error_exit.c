@@ -6,7 +6,7 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:31:07 by majacqua          #+#    #+#             */
-/*   Updated: 2022/03/05 18:33:18 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/05 19:00:30 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	here_doc_warning(char *lim)
 	ft_putstr_fd(M_SH, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd("warning: here-document at line\
-36 delimited by end-of-file (wanted `", 2);
+delimited by end-of-file (wanted `", 2);
 	ft_putstr_fd(lim, 2);
 	ft_putstr_fd("')", 2);
 	ft_putstr_fd("\n", 2);
