@@ -6,11 +6,24 @@
 /*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 04:13:54 by rusty             #+#    #+#             */
-/*   Updated: 2022/03/05 18:34:14 by rusty            ###   ########.fr       */
+/*   Updated: 2022/03/05 18:54:57 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	check_not_dir(char *full_cmd)
+{
+	DIR	*dir;
+
+	dir = opendir(full_cmd);
+	if (dir)
+	{
+		closedir(dir);
+		return (1);
+	}
+	return (0);
+}
 
 char	*find_path(char **paths, char *cmd)
 {
@@ -18,6 +31,8 @@ char	*find_path(char **paths, char *cmd)
 	char	*name;
 
 	i = -1;
+	if (check_not_dir(cmd))
+		err_exit_txt(M_SH, cmd, ERR_IS_DIREC, 126);
 	while (paths[++i])
 	{
 		if (paths[i][ft_strlen(paths[i]) - 1] != '/')
@@ -64,19 +79,6 @@ void	close_all(t_shell *shell)
 		if (shell->cmds_arr[i]->fd[1] != 1)
 			close(shell->cmds_arr[i]->fd[1]);
 	}
-}
-
-int	check_not_dir(char *full_cmd)
-{
-	DIR	*dir;
-
-	dir = opendir(full_cmd);
-	if (dir)
-	{
-		closedir(dir);
-		return (1);
-	}
-	return (0);
 }
 
 void	exec_cmd(t_cmd *cmd, t_shell *shell)
