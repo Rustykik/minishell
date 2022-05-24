@@ -1,5 +1,5 @@
 # minishell
-Written in C little clone of Bash.
+A little clone of Bash written in C.
 
 ## Implemented features of bash
 
